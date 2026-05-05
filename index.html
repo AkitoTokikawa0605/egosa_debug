@@ -11,7 +11,7 @@ body {
   background: linear-gradient(to bottom right, #1a1a1a, #3a0a5c, #1a1a1a);
   color: white;
 }
-  
+
 /* メンテ */
 #maintenance {
   display: none;
@@ -47,31 +47,29 @@ body {
   text-align: center;
 }
 
-/* ▼ここに追加 */
+/* 見出し */
 .section-title {
   font-size: 28px;
   font-weight: bold;
-  color: #fff;
   text-align: center;
-  margin: 5px 0 5px;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  margin: 10px 0;
 }
 
-  .date-title {
+/* 日付タイトル */
+.date-title {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  margin-top: 25px;
-  color: #ddd;
 }
+
 /* ボックス */
 .box {
   background: rgba(100,100,100,0.7);
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 /* ボタン */
@@ -104,17 +102,11 @@ input[type="date"] {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin: 10px 0;
 }
 
 .icons img {
   width: 40px;
   filter: invert(1);
-  transition: 0.2s;
-}
-
-.icons img:hover {
-  transform: scale(1.2);
 }
 
 /* フッター */
@@ -137,62 +129,59 @@ input[type="date"] {
 </div>
 
 <div class="container">
-  
+
   <div class="desc">
     魔界検索ツールは
-    <span class="highlight">魔灰えん</span>さんを推す為のツールです！
+    <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span>さんを推す為のツールです！
     <p>今後いろいろな機能を追加予定なので、ぜひ使用してみてください！</p>
   </div>
 
- <div class="container">
-
   <div class="section-title">▼検索ボタン</div>
 
-</div>
-<!-- 魔灰えん -->
-<div class="box">
-  <h2>魔灰えん</h2>
-  <div class="mode">
-    <label><input type="radio" name="mode1" value="or" checked> OR検索</label>
-    <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+  <!-- 魔灰えん -->
+  <div class="box">
+    <h2>魔灰えん</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode1" value="or" checked> OR検索</label>
+      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+    </div>
+    <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
+    <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰えん')">日付検索</button>
+    <button class="pink" onclick="postX()">ポスト</button>
   </div>
-  <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-  <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
-  <button class="blue" onclick="searchDate('魔灰えん')">日付検索</button>
-</div>
 
-<!-- 魔灰絵 -->
-<div class="box">
-  <h2>魔灰絵</h2>
-  <div class="mode">
-    <label><input type="radio" name="mode2" value="or" checked> OR検索</label>
-    <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+  <!-- 魔灰絵 -->
+  <div class="box">
+    <h2>魔灰絵</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode2" value="or" checked> OR検索</label>
+      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+    </div>
+    <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
+    <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰絵')">日付検索</button>
   </div>
-  <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
-  <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
-  <button class="blue" onclick="searchDate('魔灰絵')">日付検索</button>
-</div>
 
-<!-- 新衣装 -->
-<div class="box">
-  <h2>魔灰えん新衣装お披露目会</h2>
-  <div class="mode">
-    <label><input type="radio" name="mode3" value="or" checked> OR検索</label>
-    <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+  <!-- 新衣装 -->
+  <div class="box">
+    <h2>魔灰えん新衣装お披露目会</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode3" value="or" checked> OR検索</label>
+      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+    </div>
+    <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
+    <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付検索</button>
   </div>
-  <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
-  <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
-  <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付検索</button>
-</div>
 
-<p class="date-title">日付検索</p>
-<input type="date" id="date">
+  <p class="date-title">日付検索</p>
+  <input type="date" id="date">
 
 </div>
 
 <!-- フッター -->
 <div class="footer">
-
   <div class="icons">
     <a href="https://x.com/makaien_vtuber" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">
@@ -211,23 +200,11 @@ input[type="date"] {
       Akito_Tokikawa
     </a>
   </p>
-
 </div>
 
 </div>
 
 <script>
-// メンテ状態（ここだけ変更）
-let maintenanceMode =  flash;
-
-// 表示制御
-function applyMaintenance(){
- if(maintenanceMode && !isDev){
-    document.getElementById("maintenance").style.display = "flex";
-    document.getElementById("app").style.display = "none";
-  }
-}
-
 // X検索
 function searchX(word, group){
   const mode = document.querySelector(`input[name="${group}"]:checked`).value;
@@ -257,7 +234,12 @@ function searchDate(word){
   window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
 }
 
-window.onload = applyMaintenance;
+// ポスト
+function postX(){
+  const text = "#魔灰えん";
+  const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank");
+}
 </script>
 
 </body>
