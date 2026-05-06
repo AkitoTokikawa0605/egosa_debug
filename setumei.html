@@ -12,27 +12,11 @@ body {
   background-size: cover;
   color: white;
   text-align: center;
-  position: relative;
 }
 
-/* 背景を薄くする */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: -1;
-}
-
-/* 黒い説明ブロック */
+/* セクション */
 .section {
   margin-bottom: 80px;
-  background: rgba(0,0,0,0.75);
-  padding: 20px;
-  border-radius: 12px;
 }
 
 /* 画像共通 */
@@ -44,7 +28,7 @@ body::before {
   border-radius: 10px;
 }
 
-/* gazou7だけ小さく */
+/* gazou7専用（小さくする） */
 .small-img {
   max-width: 50px;
   width: 10%;
@@ -108,8 +92,13 @@ button {
   <img src="images/gazou4.png" class="setumei-img">
 </div>
 
+<!-- 空白 -->
+<div class="spacer"></div>
+
 <!-- gazou7（小さく表示） -->
 <img src="images/gazou7.png" class="setumei-img small-img">
+
+<div class="spacer"></div>
 
 <!-- ⑤ -->
 <div class="section">
@@ -117,7 +106,7 @@ button {
 </div>
 
 <!-- 戻るボタン -->
-<a href="index.html" class="back-btn">← 戻る</a>
+<button onclick="history.back()">← 戻る</button>
 
 </body>
 </html>
