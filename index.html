@@ -9,29 +9,31 @@ body {
   margin: 0;
   font-family: sans-serif;
 
-  /* デフォルト背景（あとでJSで上書きされる） */
-  background: url("images/gazou7.jpg") no-repeat center center fixed;
-  background-size: cover;
-
+  /* 背景 */
+  background: linear-gradient(to bottom right, #1a1a1a, #3a0a5c, #1a1a1a);
   color: white;
   position: relative;
-  text-align: center;
 }
 
-/* 背景を薄くする */
+/* 背景を薄くするレイヤー */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.25); /* ←ここで暗さ調整 */
   z-index: -1;
 }
 
-/* UI */
+/* ヘッダー */
 .header h1 {
   font-size: 50px;
+  text-align: center;
 }
 
+/* コンテナ */
 .container {
   display: flex;
   flex-direction: column;
@@ -40,43 +42,84 @@ body::before {
   padding: 20px;
 }
 
+/* 説明 */
 .desc {
   background: rgba(0,0,0,0.4);
   padding: 15px;
   border-radius: 12px;
+  text-align: center;
 }
 
+/* タイトル */
+.section-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.date-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ボックス */
 .box {
   background: rgba(100,100,100,0.75);
   padding: 20px;
   border-radius: 15px;
+  text-align: center;
   width: 100%;
   max-width: 400px;
 }
 
+/* ボタン */
 button {
   margin: 5px;
   padding: 10px 15px;
   border-radius: 10px;
   border: none;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .pink { background: #ff7ac3; }
 .yellow { background: #ffd700; }
 .blue { background: #6ecbff; }
 
-/* 背景変更UI */
-.bg-control {
-  margin-top: 20px;
+/* モード */
+.mode label {
+  margin: 0 10px;
 }
 
-.bg-control input {
+input[type="date"] {
   padding: 10px;
   border-radius: 10px;
-  width: 80%;
-  max-width: 300px;
+}
+
+/* アイコン */
+.icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.icons img {
+  width: 40px;
+  filter: invert(1);
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+}
+
+/* バージョン */
+.version {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 10px;
 }
 </style>
 </head>
@@ -87,45 +130,118 @@ button {
   <h1>魔界検索ツール</h1>
 </div>
 
-<!-- 背景変更 -->
-<div class="bg-control">
-  <p>背景画像URLを入れると変更できます</p>
-  <input type="text" id="bgInput" placeholder="images/bg.jpg など">
-  <button onclick="changeBg()">変更</button>
-</div>
-
 <div class="container">
 
   <div class="desc">
-    魔界検索ツールは魔灰えんさんを推す為のツールです！
+    魔界検索ツールは
+    <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span>さんを推す為のツールです！
+    <p>ぜひ使ってみてください！</p>
   </div>
 
+  <div class="section-title">▼検索ボタン</div>
+
+  <!-- 魔灰えん -->
   <div class="box">
     <h2>魔灰えん</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode1" value="or" checked> OR</label>
+      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+    </div>
     <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰えん')">日付</button>
+    <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
   </div>
+
+  <!-- 魔灰絵 -->
+  <div class="box">
+    <h2>魔灰絵</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode2" value="or" checked> OR</label>
+      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+    </div>
+    <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
+    <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰絵')">日付</button>
+    <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+  </div>
+
+  <!-- 新衣装 -->
+  <div class="box">
+    <h2>魔灰えん新衣装お披露目会</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode3" value="or" checked> OR</label>
+      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+    </div>
+    <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
+    <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
+    <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付</button>
+    <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+  </div>
+
+  <p class="date-title">日付検索</p>
+  <input type="date" id="date">
 
 </div>
 
+<div class="footer">
+  <div class="icons">
+    <a href="https://x.com/makaien_vtuber" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">
+    </a>
+    <a href="https://www.youtube.com/@makaien_vtuber" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
+    </a>
+    <a href="https://www.twitch.tv/makaien_vtuber" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg">
+    </a>
+  </div>
+
+  <p>
+    作成者：
+    <a href="https://x.com/Akito_tokikawa" target="_blank" style="color:#6ecbff;">
+      Akito_Tokikawa
+    </a>
+  </p>
+
+  <!-- バージョン -->
+  <div class="version">
+    ver 1.0.0 β
+  </div>
+</div>
+
 <script>
-/* 背景変更 */
-function changeBg(){
-  const url = document.getElementById("bgInput").value;
-  if(!url) return alert("画像URL入れて！");
+function searchX(word, group){
+  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
+  const query = mode === "or"
+    ? `${word} OR #${word}`
+    : `"${word}" OR "#${word}"`;
 
-  document.body.style.backgroundImage = `url('${url}')`;
-}
-
-/* X検索 */
-function searchX(word){
-  const query = `${word}`;
   window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
 }
 
-/* Yahoo */
 function searchYahoo(word){
   window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`);
+}
+
+function searchDate(word){
+  const date = document.getElementById("date").value;
+  if(!date){ alert("日付選んで！"); return; }
+
+  const d = new Date(date);
+  d.setDate(d.getDate() + 1);
+  const until = d.toISOString().split("T")[0];
+
+  const query = `${word} since:${date} until:${until}`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
+}
+
+function postX(word){
+  const text = `#${word}`;
+  const page = location.href;
+
+  const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(page)}`;
+  window.open(url, "_blank");
 }
 </script>
 
