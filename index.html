@@ -2,219 +2,127 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>魔界検索ツール</title>
+<title>使い方</title>
 
 <style>
 body {
   margin: 0;
   font-family: sans-serif;
   background: url("images/gazou6.jpg") no-repeat center center fixed;
-  background-size: cover; /* ←これ追加！ */
+  background-size: cover;
   color: white;
-}
-
-.header h1 {
-  font-size: 50px;
   text-align: center;
+  position: relative;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  padding: 20px;
-}
-
-.desc {
-  background: rgba(0,0,0,0.4);
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 24px;
-  margin: 30;
-}
-
-.date-title {
-  font-size: 24px;
-  margin: 20px 0 0;
-}
-
-input[type="date"] {
-  margin-top: -65px;
-}
-
-.box {
-  background: rgba(100,100,100,0.7);
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
+/* 背景を薄くするレイヤー */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 400px;
+  height: 100%;
+  background: rgba(0,0,0,0.35); /* ←背景の暗さ調整 */
+  z-index: -1;
 }
 
+/* セクション（黒ブロック） */
+.section {
+  margin-bottom: 80px;
+  background: rgba(0,0,0,0.75); /* ←ブロックを濃く */
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* 画像共通 */
+.setumei-img {
+  display: block;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+/* gazou7だけ小さく */
+.small-img {
+  max-width: 250px;
+  width: 60%;
+}
+
+/* 空白 */
+.spacer {
+  height: 60px;
+}
+
+/* ボタン */
 button {
-  margin: 5px;
-  padding: 10px 15px;
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  font-weight: bold;
   cursor: pointer;
 }
-
-.pink { background: #ff7ac3; }
-.yellow { background: #ffd700; }
-.blue { background: #6ecbff; }
-
-.mode label {
-  margin: 0 10px;
-}
-
-input[type="date"] {
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.icons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.icons img {
-  width: 40px;
-  filter: invert(1);
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.5);
-}
 </style>
+
 </head>
 
 <body>
 
-<div class="header">
-  <h1>魔界検索ツール</h1>
-</div>
+<h1>使い方</h1>
 
-<div class="container">
-
-  <div class="desc">
-    魔界検索ツールは
-    <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span>さんを推す為のツールです！
-    <p>ぜひ使ってみてください！</p>
-  </div>
-
-  <div class="section-title">▼検索ボタン</div>
-  <div class="section-title">◆説明書</div>
-  <button onclick="location.href='setumei.html'">
-  説明書を見る
-</button>
-  
-     <p class="date-title">日付検索</p>
- 　  <input type="date" id="date">
-  
-  <!-- 魔灰えん -->
-  <div class="box">
-    <h2>魔灰えん</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode1" value="or" checked> OR</label>
-      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
-    </div>
-    <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
-  </div>
-
-  <!-- 魔灰絵 -->
-  <div class="box">
-    <h2>魔灰絵</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode2" value="or" checked> OR</label>
-      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
-    </div>
-    <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰絵')">日付</button>
-    <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
-  </div>
-
-  <!-- 新衣装 -->
-  <div class="box">
-    <h2>魔灰えん新衣装お披露目会</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode3" value="or" checked> OR</label>
-      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
-    </div>
-    <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
-  </div>
-
-</div>
-
-<div class="footer">
-  <div class="icons">
-    <a href="https://x.com/makaien_vtuber" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">
-    </a>
-    <a href="https://www.youtube.com/@makaien_vtuber" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
-    </a>
-    <a href="https://www.twitch.tv/makaien_vtuber" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg">
-    </a>
-  </div>
-
+<!-- ① -->
+<div class="section">
   <p>
-    作成者：
-    <a href="https://x.com/Akito_tokikawa" target="_blank" style="color:#6ecbff;">
-      Akito_Tokikawa
-    </a>
+    ① このボタンを押せばXで検索が可能になります<br>
+    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
   </p>
-  <p style="font-size:12px; color:#aaa;">v1.1.0 β版</p>
+  <img src="images/gazou1.png" class="setumei-img">
 </div>
 
-<script>
-function searchX(word, group){
-  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
-  const query = mode === "or"
-    ? `${word} OR #${word}`
-    : `"${word}" OR "#${word}"`;
+<!-- ② -->
+<div class="section">
+  <p>
+    ② このボタンを押せば「Yahoo!リアルタイム」で検索が可能になります<br>
+    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
+  </p>
+  <img src="images/gazou2.png" class="setumei-img">
+</div>
 
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
-}
+<!-- ③ -->
+<div class="section">
+  <p>
+    ③ 日付（ピンクの手）の場所に〇〇年〇〇月〇〇日と記載して<br>
+    日付を押すと指定した日付のポストを検索が出来ます。
+  </p>
+  <img src="images/gazou3.png" class="setumei-img">
+</div>
 
-function searchYahoo(word){
-  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`);
-}
+<!-- ④ -->
+<div class="section">
+  <p>
+    ④ 「ポスト」をクリックするとXが開き<br>
+    「ハッシュタグ」のみの新規ポストになります。
+  </p>
+  <img src="images/gazou4.png" class="setumei-img">
+</div>
 
-function searchDate(word){
-  const date = document.getElementById("date").value;
-  if(!date){ alert("日付選んで！"); return; }
+<!-- 空白 -->
+<div class="spacer"></div>
 
-  const d = new Date(date);
-  d.setDate(d.getDate() + 1);
-  const until = d.toISOString().split("T")[0];
+<!-- gazou7（小さめ） -->
+<img src="images/gazou7.png" class="setumei-img small-img">
 
-  const query = `${word} since:${date} until:${until}`;
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
-}
+<div class="spacer"></div>
 
-function postX(word){
-  const text = `#${word}`;
-  const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
-  window.open(url, "_blank");
-}
-</script>
+<!-- ⑤ -->
+<div class="section">
+  <img src="images/gazou5.png" class="setumei-img">
+</div>
+
+<!-- 戻る -->
+<button onclick="history.back()">← 戻る</button>
 
 </body>
 </html>
