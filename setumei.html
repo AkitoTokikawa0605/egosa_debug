@@ -14,18 +14,29 @@ body {
   text-align: center;
 }
 
-/* 1セットごとのブロック */
+/* セクション */
 .section {
-  margin-bottom: 80px; /* ←空白 */
+  margin-bottom: 80px;
 }
 
-/* 画像 */
+/* 画像共通 */
 .setumei-img {
   display: block;
   margin: 20px auto;
   width: 90%;
   max-width: 600px;
   border-radius: 10px;
+}
+
+/* gazou7専用（小さくする） */
+.small-img {
+  max-width: 250px;
+  width: 60%;
+}
+
+/* 空白 */
+.spacer {
+  height: 60px;
 }
 
 /* ボタン */
@@ -81,11 +92,14 @@ button {
   <img src="images/gazou4.png" class="setumei-img">
 </div>
 
-<!-- 空白（ここに入る） -->
+<!-- 空白 -->
 <div class="spacer"></div>
-    <img src="images/gazou7.png" class="setumei-img">
+
+<!-- gazou7（小さく表示） -->
+<img src="images/gazou7.png" class="setumei-img small-img">
+
 <div class="spacer"></div>
-  
+
 <!-- ⑤ -->
 <div class="section">
   <img src="images/gazou5.png" class="setumei-img">
