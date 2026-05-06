@@ -9,24 +9,29 @@ body {
   margin: 0;
   font-family: sans-serif;
   background: url("images/gazou6.jpg") no-repeat center center fixed;
-  background-size: cover; /* ←これ追加！ */
+  background-size: cover;
   color: white;
+  text-align: center;
+}
+
+/* 1セットごとのブロック */
+.section {
+  margin-bottom: 80px; /* ←空白 */
 }
 
 /* 画像 */
 .setumei-img {
+  display: block;
+  margin: 20px auto;
   width: 90%;
   max-width: 600px;
   border-radius: 10px;
-  margin: 40px 0;
-}
-
-p {
-  margin-bottom: 10px;
 }
 
 /* ボタン */
 button {
+  display: block;
+  margin: 30px auto;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
@@ -35,39 +40,53 @@ button {
 </style>
 
 </head>
+
 <body>
 
 <h1>使い方</h1>
 
-<p>① ここのボタンを押せばXで検索が可能になります<br>
-　　 「OR」か「完全一致」のどちらかを選択して検索も出来ます。</p>
+<!-- ① -->
+<div class="section">
+  <p>
+    ① このボタンを押せばXで検索が可能になります<br>
+    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
+  </p>
+  <img src="images/gazou1.png" class="setumei-img">
+</div>
 
-<img src="images/gazou1.png" class="setumei-img"></p>
+<!-- ② -->
+<div class="section">
+  <p>
+    ② このボタンを押せば「Yahoo!リアルタイム」で検索が可能になります<br>
+    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
+  </p>
+  <img src="images/gazou2.png" class="setumei-img">
+</div>
 
-  
-<p>① ここのボタンを押せば「Yahoo!リアルタイム」で検索が可能になります<br>
-　　 「OR」か「完全一致」のどちらかを選択して検索も出来ます。</p>
+<!-- ③ -->
+<div class="section">
+  <p>
+    ③ 日付（ピンクの手）の場所に〇〇年〇〇月〇〇日と記載して<br>
+    日付を押すと指定した日付のポストを検索が出来ます。
+  </p>
+  <img src="images/gazou3.png" class="setumei-img">
+</div>
 
-<img src="images/gazou2.png" class="setumeie-img">
+<!-- ④ -->
+<div class="section">
+  <p>
+    ④ 「ポスト」をクリックするとXが開き<br>
+    「ハッシュタグ」のみの新規ポストになります。
+  </p>
+  <img src="images/gazou4.png" class="setumei-img">
+</div>
 
-  
-<p>① 日付（ピンクの手）の場所に〇〇年〇〇月〇〇日と記載して<br>
- 　  日付を押すと指定した日付のポストを検索が出来ます。</p>
+<!-- ⑤ -->
+<div class="section">
+  <img src="images/gazou5.png" class="setumei-img">
+</div>
 
-<img src="images/gazou3.png" class="setumeie-img">
-
-  
-  <p>① 「ポスト」をクリックするとXが開き <br>
-  　　　「ハッシュタグ」のみの新規ポストになります。</p>
-
-<img src="images/gazou4.png" class="setumeie-img">
-
-
-<img src="images/gazou5.png" class="setumeie-img">
-
-  
-  <br>
-
+<!-- 戻るボタン -->
 <button onclick="history.back()">← 戻る</button>
 
 </body>
