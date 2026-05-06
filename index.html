@@ -2,127 +2,170 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>使い方</title>
+<title>エゴサツール</title>
 
 <style>
 body {
   margin: 0;
   font-family: sans-serif;
-  background: url("images/gazou6.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: linear-gradient(to bottom right, #1a1a1a, #3a0a5c, #1a1a1a);
   color: white;
+}
+
+/* メンテ画面 */
+#maintenance {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  background: black;
+  color: red;
+}
+
+/* ヘッダー */
+.header h1 {
+  font-size: 50px;
   text-align: center;
-  position: relative;
 }
 
-/* 背景を薄くするレイヤー */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35); /* ←背景の暗さ調整 */
-  z-index: -1;
-}
-
-/* セクション（黒ブロック） */
-.section {
-  margin-bottom: 80px;
-  background: rgba(0,0,0,0.75); /* ←ブロックを濃く */
+/* コンテンツ */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
   padding: 20px;
-  border-radius: 12px;
 }
 
-/* 画像共通 */
-.setumei-img {
-  display: block;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 10px;
-}
-
-/* gazou7だけ小さく */
-.small-img {
-  max-width: 250px;
-  width: 60%;
-}
-
-/* 空白 */
-.spacer {
-  height: 60px;
+/* ボックス */
+.box {
+  background: rgba(100,100,100,0.7);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 400px;
 }
 
 /* ボタン */
 button {
-  display: block;
-  margin: 30px auto;
-  padding: 10px 20px;
+  margin-top: 10px;
+  padding: 10px 15px;
   border-radius: 10px;
   border: none;
+  font-weight: bold;
   cursor: pointer;
 }
-</style>
 
+.pink { background: #ff7ac3; }
+.yellow { background: #ffd700; }
+.blue { background: #6ecbff; }
+
+/* ラジオ */
+.mode {
+  margin-top: 10px;
+}
+.mode label {
+  margin: 0 10px;
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+}
+</style>
 </head>
 
 <body>
 
-<h1>使い方</h1>
-
-<!-- ① -->
-<div class="section">
-  <p>
-    ① このボタンを押せばXで検索が可能になります<br>
-    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
-  </p>
-  <img src="images/gazou1.png" class="setumei-img">
+<!-- メンテ画面 -->
+<div id="maintenance">
+  メンテナンス中です…
 </div>
 
-<!-- ② -->
-<div class="section">
-  <p>
-    ② このボタンを押せば「Yahoo!リアルタイム」で検索が可能になります<br>
-    「OR」か「完全一致」のどちらかを選択して検索も出来ます。
-  </p>
-  <img src="images/gazou2.png" class="setumei-img">
+<!-- 本体 -->
+<div id="app">
+
+<div class="header">
+  <h1>エゴサツール</h1>
 </div>
 
-<!-- ③ -->
-<div class="section">
-  <p>
-    ③ 日付（ピンクの手）の場所に〇〇年〇〇月〇〇日と記載して<br>
-    日付を押すと指定した日付のポストを検索が出来ます。
-  </p>
-  <img src="images/gazou3.png" class="setumei-img">
+<div class="container">
+
+<!-- ▼ 魔灰えん -->
+<div class="box">
+  <h2>魔灰えん</h2>
+
+  <div class="mode">
+    <label><input type="radio" name="mode1" value="or" checked> OR検索</label>
+    <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+  </div>
+
+  <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
 </div>
 
-<!-- ④ -->
-<div class="section">
-  <p>
-    ④ 「ポスト」をクリックするとXが開き<br>
-    「ハッシュタグ」のみの新規ポストになります。
-  </p>
-  <img src="images/gazou4.png" class="setumei-img">
+<!-- ▼ 新衣装 -->
+<div class="box">
+  <h2>魔灰えん新衣装お披露目会</h2>
+
+  <div class="mode">
+    <label><input type="radio" name="mode2" value="or" checked> OR検索</label>
+    <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+  </div>
+
+  <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode2')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
 </div>
 
-<!-- 空白 -->
-<div class="spacer"></div>
+<!-- メンテ切替 -->
+<button onclick="toggleMaintenance()">メンテ切替</button>
 
-<!-- gazou7（小さめ） -->
-<img src="images/gazou7.png" class="setumei-img small-img">
-
-<div class="spacer"></div>
-
-<!-- ⑤ -->
-<div class="section">
-  <img src="images/gazou5.png" class="setumei-img">
 </div>
 
-<!-- 戻る -->
-<button onclick="history.back()">← 戻る</button>
+<div class="footer">
+  作成者：Akito_Tokikawa
+</div>
+
+</div>
+
+<script>
+// ===== メンテ切替 =====
+let maintenanceMode = false;
+
+function toggleMaintenance(){
+  maintenanceMode = !maintenanceMode;
+
+  document.getElementById("maintenance").style.display =
+    maintenanceMode ? "flex" : "none";
+
+  document.getElementById("app").style.display =
+    maintenanceMode ? "none" : "block";
+}
+
+// ===== X検索 =====
+function searchX(word, groupName){
+  const mode = document.querySelector(`input[name="${groupName}"]:checked`).value;
+
+  let query;
+
+  if(mode === "or"){
+    query = `${word} OR #${word}`;
+  } else {
+    query = `"${word}" OR "#${word}"`;
+  }
+
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
+}
+
+// ===== Yahoo =====
+function searchYahoo(word){
+  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`);
+}
+</script>
 
 </body>
 </html>
