@@ -283,51 +283,58 @@ input[type="date"]::-webkit-datetime-edit {
     使い方・説明
   </button>
 
-  <div class="section-title">
-    ▼検索ボタン
+<div class="section-title">
+  ▼検索ボタン
+</div>
+
+<!-- 日付検索 -->
+<p class="date-title">
+  日付検索
+</p>
+
+<input type="date" id="date">
+
+<!-- 魔灰えん -->
+<div class="box">
+
+  <h2>魔灰えん</h2>
+
+  <div class="mode">
+    <label>
+      <input type="radio"
+             name="mode1"
+             value="or"
+             checked>
+      OR
+    </label>
+
+    <label>
+      <input type="radio"
+             name="mode1"
+             value="exact">
+      完全一致
+    </label>
   </div>
 
-  <!-- 魔灰えん -->
-  <div class="box">
+  <button class="pink"
+          onclick="searchX('魔灰えん','mode1')">
+    X検索
+  </button>
 
-    <h2>魔灰えん</h2>
+  <button class="yellow"
+          onclick="searchYahoo('魔灰えん')">
+    Yahoo
+  </button>
 
-    <div class="mode">
-      <label>
-        <input type="radio"
-               name="mode1"
-               value="or"
-               checked>
-        OR
-      </label>
+  <button class="blue"
+          onclick="searchDate('魔灰えん')">
+    日付
+  </button>
 
-      <label>
-        <input type="radio"
-               name="mode1"
-               value="exact">
-        完全一致
-      </label>
-    </div>
-
-    <button class="pink"
-            onclick="searchX('魔灰えん','mode1')">
-      X検索
-    </button>
-
-    <button class="yellow"
-            onclick="searchYahoo('魔灰えん')">
-      Yahoo
-    </button>
-
-    <button class="blue"
-            onclick="searchDate('魔灰えん')">
-      日付
-    </button>
-
-    <button class="pink"
-            onclick="postX('魔灰えん')">
-      ポスト
-    </button>
+  <button class="pink"
+          onclick="postX('魔灰えん')">
+    ポスト
+  </button>
 
   </div>
 
