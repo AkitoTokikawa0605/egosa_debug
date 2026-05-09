@@ -312,10 +312,8 @@ function postX(word){
 
   const text = `#${word}`;
 
-  const page = location.href;
-
   const url =
-    `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(page)}`;
+    `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
 
   window.open(url, "_blank");
 }
