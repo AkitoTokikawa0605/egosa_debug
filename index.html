@@ -9,13 +9,17 @@ body {
   margin: 0;
   font-family: sans-serif;
 
-  /* 背景 */
-  background: linear-gradient(to bottom right, #1a1a1a, #3a0a5c, #1a1a1a);
+  /* 背景画像 */
+  background-image: url("img/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
   color: white;
   position: relative;
 }
 
-/* 背景を薄くするレイヤー */
+/* 背景を暗く＋ぼかし */
 body::before {
   content: "";
   position: fixed;
@@ -23,7 +27,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.25); /* ←ここで暗さ調整 */
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+
   z-index: -1;
 }
 
@@ -31,6 +38,8 @@ body::before {
 .header h1 {
   font-size: 50px;
   text-align: center;
+  margin-top: 30px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
 /* コンテナ */
@@ -44,10 +53,12 @@ body::before {
 
 /* 説明 */
 .desc {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
   padding: 15px;
   border-radius: 12px;
   text-align: center;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
 /* タイトル */
@@ -64,12 +75,15 @@ body::before {
 
 /* ボックス */
 .box {
-  background: rgba(100,100,100,0.75);
+  background: rgba(80,80,80,0.75);
   padding: 20px;
   border-radius: 15px;
   text-align: center;
   width: 100%;
   max-width: 400px;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
 }
 
 /* ボタン */
@@ -80,20 +94,38 @@ button {
   border: none;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.pink { background: #ff7ac3; }
-.yellow { background: #ffd700; }
-.blue { background: #6ecbff; }
+button:hover {
+  transform: scale(1.05);
+}
+
+.pink {
+  background: #ff7ac3;
+  color: black;
+}
+
+.yellow {
+  background: #ffd700;
+  color: black;
+}
+
+.blue {
+  background: #6ecbff;
+  color: black;
+}
 
 /* モード */
 .mode label {
   margin: 0 10px;
 }
 
+/* 日付 */
 input[type="date"] {
   padding: 10px;
   border-radius: 10px;
+  border: none;
 }
 
 /* アイコン */
@@ -106,6 +138,11 @@ input[type="date"] {
 .icons img {
   width: 40px;
   filter: invert(1);
+  transition: 0.2s;
+}
+
+.icons img:hover {
+  transform: scale(1.15);
 }
 
 /* フッター */
@@ -113,6 +150,7 @@ input[type="date"] {
   text-align: center;
   padding: 20px;
   background: rgba(0,0,0,0.5);
+  margin-top: 30px;
 }
 
 /* バージョン */
@@ -143,10 +181,12 @@ input[type="date"] {
   <!-- 魔灰えん -->
   <div class="box">
     <h2>魔灰えん</h2>
+
     <div class="mode">
       <label><input type="radio" name="mode1" value="or" checked> OR</label>
       <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
     </div>
+
     <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
     <button class="blue" onclick="searchDate('魔灰えん')">日付</button>
@@ -156,10 +196,12 @@ input[type="date"] {
   <!-- 魔灰絵 -->
   <div class="box">
     <h2>魔灰絵</h2>
+
     <div class="mode">
       <label><input type="radio" name="mode2" value="or" checked> OR</label>
       <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
     </div>
+
     <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
     <button class="blue" onclick="searchDate('魔灰絵')">日付</button>
@@ -169,10 +211,12 @@ input[type="date"] {
   <!-- 新衣装 -->
   <div class="box">
     <h2>魔灰えん新衣装お披露目会</h2>
+
     <div class="mode">
       <label><input type="radio" name="mode3" value="or" checked> OR</label>
       <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
     </div>
+
     <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
     <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付</button>
@@ -185,13 +229,16 @@ input[type="date"] {
 </div>
 
 <div class="footer">
+
   <div class="icons">
     <a href="https://x.com/makaien_vtuber" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">
     </a>
+
     <a href="https://www.youtube.com/@makaien_vtuber" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
     </a>
+
     <a href="https://www.twitch.tv/makaien_vtuber" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg">
     </a>
@@ -199,48 +246,77 @@ input[type="date"] {
 
   <p>
     作成者：
-    <a href="https://x.com/Akito_tokikawa" target="_blank" style="color:#6ecbff;">
+    <a href="https://x.com/Akito_tokikawa"
+       target="_blank"
+       style="color:#6ecbff;">
       Akito_Tokikawa
     </a>
   </p>
 
-  <!-- バージョン -->
   <div class="version">
-    ver 1.0.0 β
+    ver 1.1.0 β
   </div>
+
 </div>
 
 <script>
 function searchX(word, group){
-  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
-  const query = mode === "or"
+
+  const mode =
+    document.querySelector(
+      `input[name="${group}"]:checked`
+    ).value;
+
+  const query =
+    mode === "or"
     ? `${word} OR #${word}`
     : `"${word}" OR "#${word}"`;
 
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
+  window.open(
+    `https://x.com/search?q=${encodeURIComponent(query)}&f=live`
+  );
 }
 
 function searchYahoo(word){
-  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`);
+  window.open(
+    `https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`
+  );
 }
 
 function searchDate(word){
-  const date = document.getElementById("date").value;
-  if(!date){ alert("日付選んで！"); return; }
+
+  const date =
+    document.getElementById("date").value;
+
+  if(!date){
+    alert("日付選んで！");
+    return;
+  }
 
   const d = new Date(date);
-  d.setDate(d.getDate() + 1);
-  const until = d.toISOString().split("T")[0];
 
-  const query = `${word} since:${date} until:${until}`;
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`);
+  d.setDate(d.getDate() + 1);
+
+  const until =
+    d.toISOString().split("T")[0];
+
+  const query =
+    `${word} since:${date} until:${until}`;
+
+  window.open(
+    `https://x.com/search?q=${encodeURIComponent(query)}&f=live`
+  );
 }
 
 function postX(word){
+
   const text = `#${word}`;
+
   const page = location.href;
 
-  const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(page)}`;
+  const url =
+    `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(page)}`;
+
   window.open(url, "_blank");
 }
 </script>
