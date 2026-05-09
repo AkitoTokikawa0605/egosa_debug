@@ -280,7 +280,7 @@ input[type="date"]::-webkit-datetime-edit {
 
   <button class="guide-btn"
           onclick="location.href='setumei.html'">
-    使い方・説明
+    取扱説明書
   </button>
 
   <div class="section-title">
@@ -467,10 +467,16 @@ input[type="date"]::-webkit-datetime-edit {
 <script>
 
 /* trueでメンテON / falseで通常 */
-const maintenanceMode =  true;
+const maintenanceMode = true;
+
+/* 管理者貫通 */
+const urlParams = new URLSearchParams(location.search);
+
+const isAdmin =
+  urlParams.get("admin") === "true";
 
 /* メンテ表示 */
-if(maintenanceMode){
+if(maintenanceMode && !isAdmin){
 
   document.getElementById(
     "maintenance"
