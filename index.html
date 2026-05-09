@@ -17,8 +17,6 @@ body {
 
   color: white;
   position: relative;
-
-  /* 追加 */
   z-index: 0;
 }
 
@@ -26,10 +24,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background: rgba(0,0,0,0.45);
   backdrop-filter: blur(3px);
@@ -69,6 +64,30 @@ body::before {
   font-size: 28px;
   font-weight: bold;
   margin: 10px 0;
+}
+
+/* 説明ボタン */
+.guide-btn {
+  background: linear-gradient(45deg,#b56cff,#ff7ac3);
+  color: white;
+
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+
+  transition: 0.2s;
+}
+
+.guide-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
 
 .date-title {
@@ -175,58 +194,160 @@ input[type="date"] {
 
   <div class="desc">
     魔界検索ツールは
-    <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span>さんを推す為のツールです！
+    <span style="color:#ff7ac3; font-weight:bold;">
+      魔灰えん
+    </span>
+    さんを推す為のツールです！
+
     <p>ぜひ使ってみてください！</p>
   </div>
 
-  <div class="section-title">▼検索ボタン</div>
+  <div class="section-title">
+    ▼検索ボタン
+  </div>
+
+  <!-- 説明ページボタン -->
+  <button class="guide-btn"
+          onclick="location.href='setumei.html'">
+    使い方・説明
+  </button>
 
   <!-- 魔灰えん -->
   <div class="box">
+
     <h2>魔灰えん</h2>
 
     <div class="mode">
-      <label><input type="radio" name="mode1" value="or" checked> OR</label>
-      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+      <label>
+        <input type="radio"
+               name="mode1"
+               value="or"
+               checked>
+        OR
+      </label>
+
+      <label>
+        <input type="radio"
+               name="mode1"
+               value="exact">
+        完全一致
+      </label>
     </div>
 
-    <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
+    <button class="pink"
+            onclick="searchX('魔灰えん','mode1')">
+      X検索
+    </button>
+
+    <button class="yellow"
+            onclick="searchYahoo('魔灰えん')">
+      Yahoo
+    </button>
+
+    <button class="blue"
+            onclick="searchDate('魔灰えん')">
+      日付
+    </button>
+
+    <button class="pink"
+            onclick="postX('魔灰えん')">
+      ポスト
+    </button>
+
   </div>
 
   <!-- 魔灰絵 -->
   <div class="box">
+
     <h2>魔灰絵</h2>
 
     <div class="mode">
-      <label><input type="radio" name="mode2" value="or" checked> OR</label>
-      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+      <label>
+        <input type="radio"
+               name="mode2"
+               value="or"
+               checked>
+        OR
+      </label>
+
+      <label>
+        <input type="radio"
+               name="mode2"
+               value="exact">
+        完全一致
+      </label>
     </div>
 
-    <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰絵')">日付</button>
-    <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+    <button class="pink"
+            onclick="searchX('魔灰絵','mode2')">
+      X検索
+    </button>
+
+    <button class="yellow"
+            onclick="searchYahoo('魔灰絵')">
+      Yahoo
+    </button>
+
+    <button class="blue"
+            onclick="searchDate('魔灰絵')">
+      日付
+    </button>
+
+    <button class="pink"
+            onclick="postX('魔灰絵')">
+      ポスト
+    </button>
+
   </div>
 
   <!-- 新衣装 -->
   <div class="box">
+
     <h2>魔灰えん新衣装お披露目会</h2>
 
     <div class="mode">
-      <label><input type="radio" name="mode3" value="or" checked> OR</label>
-      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+      <label>
+        <input type="radio"
+               name="mode3"
+               value="or"
+               checked>
+        OR
+      </label>
+
+      <label>
+        <input type="radio"
+               name="mode3"
+               value="exact">
+        完全一致
+      </label>
     </div>
 
-    <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+    <button class="pink"
+            onclick="searchX('魔灰えん新衣装お披露目会','mode3')">
+      X検索
+    </button>
+
+    <button class="yellow"
+            onclick="searchYahoo('魔灰えん新衣装お披露目会')">
+      Yahoo
+    </button>
+
+    <button class="blue"
+            onclick="searchDate('魔灰えん新衣装お披露目会')">
+      日付
+    </button>
+
+    <button class="pink"
+            onclick="postX('魔灰えん新衣装お披露目会')">
+      ポスト
+    </button>
+
   </div>
 
-  <p class="date-title">日付検索</p>
+  <p class="date-title">
+    日付検索
+  </p>
+
   <input type="date" id="date">
 
 </div>
@@ -234,25 +355,33 @@ input[type="date"] {
 <div class="footer">
 
   <div class="icons">
-    <a href="https://x.com/makaien_vtuber" target="_blank">
+
+    <a href="https://x.com/makaien_vtuber"
+       target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">
     </a>
 
-    <a href="https://www.youtube.com/@makaien_vtuber" target="_blank">
+    <a href="https://www.youtube.com/@makaien_vtuber"
+       target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
     </a>
 
-    <a href="https://www.twitch.tv/makaien_vtuber" target="_blank">
+    <a href="https://www.twitch.tv/makaien_vtuber"
+       target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg">
     </a>
+
   </div>
 
   <p>
     作成者：
+
     <a href="https://x.com/Akito_tokikawa"
        target="_blank"
        style="color:#6ecbff;">
+
       Akito_Tokikawa
+
     </a>
   </p>
 
@@ -281,6 +410,7 @@ function searchX(word, group){
 }
 
 function searchYahoo(word){
+
   window.open(
     `https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`
   );
