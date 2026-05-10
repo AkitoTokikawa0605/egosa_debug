@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>魔界検索ツール</title>
+  
+<!-- アイコン設定 -->
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 
+<!-- スマホ用 -->
+<meta name="theme-color" content="#6a0dad">
+<meta name="apple-mobile-web-app-capable" content="yes">
+  
 <style>
 body {
   margin: 0;
@@ -536,7 +544,7 @@ input[type="date"]::-webkit-datetime-edit {
 // true = メンテ表示
 // false = 通常表示
 // =======================
-let maintenanceMode =  flash;
+let maintenanceMode = false;
 
 // =======================
 // ?dev=1 で貫通
