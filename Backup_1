@@ -131,6 +131,7 @@ button:hover {
   transform: scale(1.05);
 }
 
+/* ボタン色 */
 .pink {
   background: #ff7ac3;
   color: black;
@@ -144,6 +145,28 @@ button:hover {
 .blue {
   background: #6ecbff;
   color: black;
+}
+
+/* OR / 完全一致 */
+.mode{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:20px;
+  margin-bottom:15px;
+}
+
+.mode label{
+  display:flex;
+  align-items:flex-start;
+  gap:5px;
+  color:white;
+  font-size:28px;
+}
+
+.mode input[type="radio"]{
+  margin-top:3px;
+  transform:scale(1.2);
 }
 
 /* モード */
@@ -350,146 +373,63 @@ input[type="date"]::-webkit-datetime-edit {
   ▼検索ボタン
 </div>
   
-<!-- 魔灰えん -->
 <div class="box">
-
   <h2>魔灰えん</h2>
-
   <div class="mode">
-    <label>
-      <input type="radio"
-             name="mode1"
-             value="or"
-             checked>
-      OR
-    </label>
-
-    <label>
-      <input type="radio"
-             name="mode1"
-             value="exact">
-      完全一致
-    </label>
+    <label><input type="radio" name="mode1" value="or" checked> OR</label>
+    <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
   </div>
+  <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+  <button class="blue" onclick="searchDate('魔灰えん')">日付</button>
+  <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
+</div>
 
-  <button class="pink"
-          onclick="searchX('魔灰えん','mode1')">
-    X検索
-  </button>
-
-  <button class="yellow"
-          onclick="searchYahoo('魔灰えん')">
-    Yahoo
-  </button>
-
-  <button class="blue"
-          onclick="searchDate('魔灰えん')">
-    日付
-  </button>
-
-  <button class="pink"
-          onclick="postX('魔灰えん')">
-    ポスト
-  </button>
-
+<div class="box">
+  <h2>魔灰絵</h2>
+  <div class="mode">
+    <label><input type="radio" name="mode2" value="or" checked> OR</label>
+    <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
   </div>
+  <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
+  <button class="blue" onclick="searchDate('魔灰絵')">日付</button>
+  <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+</div>
 
-  <!-- 魔灰絵 -->
-  <div class="box">
-
-    <h2>魔灰絵</h2>
-
-    <div class="mode">
-      <label>
-        <input type="radio"
-               name="mode2"
-               value="or"
-               checked>
-        OR
-      </label>
-
-      <label>
-        <input type="radio"
-               name="mode2"
-               value="exact">
-        完全一致
-      </label>
-    </div>
-
-    <button class="pink"
-            onclick="searchX('魔灰絵','mode2')">
-      X検索
-    </button>
-
-    <button class="yellow"
-            onclick="searchYahoo('魔灰絵')">
-      Yahoo
-    </button>
-
-    <button class="blue"
-            onclick="searchDate('魔灰絵')">
-      日付
-    </button>
-
-    <button class="pink"
-            onclick="postX('魔灰絵')">
-      ポスト
-    </button>
-
+<div class="box">
+  <h2>魔灰えん新衣装お披露目会</h2>
+  <div class="mode">
+    <label><input type="radio" name="mode3" value="or" checked> OR</label>
+    <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
   </div>
+  <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
+  <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会')">日付</button>
+  <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+</div>
 
-  <!-- 新衣装 -->
-  <div class="box">
-
-    <h2>魔灰えん新衣装お披露目会</h2>
-
-    <div class="mode">
-      <label>
-        <input type="radio"
-               name="mode3"
-               value="or"
-               checked>
-        OR
-      </label>
-
-      <label>
-        <input type="radio"
-               name="mode3"
-               value="exact">
-        完全一致
-      </label>
-    </div>
-
-    <button class="pink"
-            onclick="searchX('魔灰えん新衣装お披露目会','mode3')">
-      X検索
-    </button>
-
-    <button class="yellow"
-            onclick="searchYahoo('魔灰えん新衣装お披露目会')">
-      Yahoo
-    </button>
-
-    <button class="blue"
-            onclick="searchDate('魔灰えん新衣装お披露目会')">
-      日付
-    </button>
-
-    <button class="pink"
-            onclick="postX('魔灰えん新衣装お披露目会')">
-      ポスト
-    </button>
-
+<div class="box">
+  <h2>魔灰の素材</h2>
+  <div class="mode">
+    <label><input type="radio" name="mode4" value="or" checked> OR</label>
+    <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
   </div>
-<div class="calendar-box">
+  <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
+  <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
+  <button class="blue" onclick="searchDate('魔灰の素材')">日付</button>
+  <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
+</div>
+
+  
 <!-- 予定リスト -->
 
-  <h2 style="color:white;">
-    魔灰えん スケジュール
-  </h2>
+<div class="calendar-box">
+  <h2>▼魔灰えん スケジュール</h2>
+  </div>
 
  <iframe
-  src="https://calendar.google.com/calendar/embed?src=d2448c4502bb3498eff3cfbb2bdaf918cd3302bfa6b41efcbd53a5c058864601%40group.calendar.google.com&ctz=Asia%2FTokyo&mode=MONTH"
+  src="https://calendar.google.com/calendar/embed?src=afeb120713660b235cfb63c258081979b1a04fb6fc873aea78c6741550065aa6%40group.calendar.google.com&ctz=Asia%2FTokyo"
 
   style="
     border:0;
@@ -537,7 +477,7 @@ input[type="date"]::-webkit-datetime-edit {
   </p>
 
   <div class="version">
-    ver 1.1.0
+    ver 1.2.0
   </div>
 
 </div>
@@ -549,7 +489,7 @@ input[type="date"]::-webkit-datetime-edit {
 // true = メンテ表示
 // false = 通常表示
 // =======================
-let maintenanceMode =  true;
+let maintenanceMode =  false;
 
 // =======================
 // ?dev=1 で貫通
