@@ -482,6 +482,51 @@ input[type="date"]::-webkit-datetime-edit {
 
   </div>
 <div class="calendar-box">
+
+    <!-- フリー素材 -->
+  <div class="box">
+
+    <h2>魔灰えんフリー素材集</h2>
+
+    <div class="mode">
+      <label>
+        <input type="radio"
+               name="mode3"
+               value="or"
+               checked>
+        OR
+      </label>
+
+      <label>
+        <input type="radio"
+               name="mode3"
+               value="exact">
+        完全一致
+      </label>
+    </div>
+
+    <button class="pink"
+            onclick="searchX('魔灰えんフリー素材集','mode3')">
+      X検索
+    </button>
+
+    <button class="yellow"
+            onclick="searchYahoo('魔灰えんフリー素材集')">
+      Yahoo
+    </button>
+
+    <button class="blue"
+            onclick="searchDate('魔灰えんフリー素材集')">
+      日付
+    </button>
+
+    <button class="pink"
+            onclick="postX('魔灰えんフリー素材集')">
+      ポスト
+    </button>
+
+  </div>
+<div class="calendar-box">
 <!-- 予定リスト -->
 
   <h2 style="color:white;">
@@ -549,7 +594,7 @@ input[type="date"]::-webkit-datetime-edit {
 // true = メンテ表示
 // false = 通常表示
 // =======================
-let maintenanceMode =  true;
+let maintenanceMode =  flash;
 
 // =======================
 // ?dev=1 で貫通
