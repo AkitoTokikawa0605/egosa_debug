@@ -268,15 +268,44 @@ input[type="date"]::-webkit-datetime-edit {
   font-size: 18px;
   line-height: 1.8;
 }
+  .maintenance-img{
+  width: 220px;
+  max-width: 80%;
+
+  margin-bottom: 20px;
+
+  animation: float 2s ease-in-out infinite;
+}
+
+/* ふわふわ */
+@keyframes float{
+
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-10px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+
+}
 </style>
 </head>
 
 <body>
+  
 
 <!-- メンテナンス画面 -->
 <div id="maintenance">
 
   <div class="maintenance-box">
+
+    <!-- 画像 -->
+    <img src="images/maintenance.png" class="maintenance-img">
 
     <h1>現在メンテナンス中</h1>
 
@@ -286,6 +315,8 @@ input[type="date"]::-webkit-datetime-edit {
     </p>
 
   </div>
+
+</div>
 
 </div>
 
