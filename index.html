@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -135,7 +134,9 @@
       margin-bottom: 12px;
     }
     
+    /* 日付選択の文字を出すための新しいスタイル設定 */
     input[type="date"] {
+      position: relative;
       padding: 6px 10px;
       border-radius: 8px;
       border: none;
@@ -143,6 +144,24 @@
       font-size: 14px;
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    /* 未選択（値が空白）の時だけ「日付選択」という文字を重ねて表示する魔法のCSS */
+    input[type="date"]:invalid::before {
+      content: "日付選択";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #666;
+      border-radius: 8px;
+      pointer-events: none;
     }
 
     /* 自由検索入力欄のスタイル */
@@ -285,7 +304,7 @@
     <h2>キーワード自由検索</h2>
     <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
     <div class="box-date-container">
-      <input type="date" id="date_free">
+      <input type="date" id="date_free" required>
     </div>
     <div>
       <button class="pink" onclick="searchFreeX()">Xで検索</button>
@@ -301,7 +320,7 @@
       <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
     </div>
     <div class="box-date-container">
-      <input type="date" id="date1">
+      <input type="date" id="date1" required>
     </div>
     <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
@@ -316,7 +335,7 @@
       <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
     </div>
     <div class="box-date-container">
-      <input type="date" id="date2">
+      <input type="date" id="date2" required>
     </div>
     <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
@@ -331,7 +350,7 @@
       <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
     </div>
     <div class="box-date-container">
-      <input type="date" id="date3">
+      <input type="date" id="date3" required>
     </div>
     <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
@@ -346,7 +365,7 @@
       <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
     </div>
     <div class="box-date-container">
-      <input type="date" id="date4">
+      <input type="date" id="date4" required>
     </div>
     <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
     <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
@@ -423,7 +442,6 @@ function searchYahoo(word){
   window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
 }
 
-// ボックス個別のカレンダーから日付を取得するように修正
 function searchDate(word, inputId){
   const dateInput = document.getElementById(inputId).value;
   if(!dateInput){ alert("日付を選んでね！"); return; }
