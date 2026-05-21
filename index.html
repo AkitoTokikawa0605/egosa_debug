@@ -138,6 +138,17 @@
       text-align: center;
     }
 
+    /* 自由検索入力欄のスタイル追加 */
+    .search-input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
     /* スケジュールエリア */
     .calendar-box {
       background: rgba(55,55,55,0.88);
@@ -258,6 +269,16 @@
   
   <div class="section-title">▼検索ボタン</div>
   
+  <!-- 【新規追加】自由入力検索窓ボックス -->
+  <div class="box" style="border: 2px solid #6a0dad;">
+    <h2>キーワード自由検索</h2>
+    <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
+    <div>
+      <button class="pink" onclick="searchFreeX()">Xで検索</button>
+      <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
+    </div>
+  </div>
+
   <div class="box">
     <h2>魔灰えん</h2>
     <div class="mode">
@@ -334,7 +355,7 @@
 
 <script>
 // --- 管理設定 ---
-let maintenanceMode =　flash; // trueにするとメンテ画面
+let maintenanceMode = false; // JavaScriptのエラー防止のため「flash」から修正しました。メンテ時はtrueにしてください。
 
 const isDev = new URLSearchParams(location.search).get("dev") === "1";
 if (maintenanceMode && !isDev) {
@@ -342,7 +363,23 @@ if (maintenanceMode && !isDev) {
   document.body.style.overflow = "hidden";
 }
 
-// --- 検索関数 ---
+/* --- 【新規追加】自由検索用の関数 --- */
+function searchFreeX() {
+  const word = document.getElementById("free-keyword").value.trim();
+  if(!word) { alert("検索ワードを入力してね！"); return; }
+  // 既存の「OR検索（ワード単体、またはハッシュタグ）」と同じ形式で検索します
+  const query = `${word} OR #${word}`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+}
+
+function searchFreeYahoo() {
+  const word = document.getElementById("free-keyword").value.trim();
+  if(!word) { alert("検索ワードを入力してね！"); return; }
+  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
+}
+
+
+// --- 既存の検索関数 ---
 function searchX(word, group){
   const mode = document.querySelector(`input[name="${group}"]:checked`).value;
   const query = (mode === "or") ? `${word} OR #${word}` : `"${word}" OR "#${word}"`;
