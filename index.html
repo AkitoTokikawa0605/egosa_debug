@@ -138,7 +138,7 @@
       text-align: center;
     }
 
-    /* 自由検索入力欄のスタイル追加 */
+    /* 自由検索入力欄のスタイル */
     .search-input {
       width: 90%;
       padding: 10px;
@@ -264,12 +264,19 @@
   <div class="section-title">▼取扱説明書</div>
   <button class="btn-common guide-btn" onclick="location.href='setumei.html'">取扱説明書を開く</button>
 
+  <div class="calendar-box">
+    <h2 style="margin:5px 0;">▼魔灰えん スケジュール</h2>
+  </div>
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src=afeb120713660b235cfb63c258081979b1a04fb6fc873aea78c6741550065aa6%40group.calendar.google.com&ctz=Asia%2FTokyo"
+    class="calendar-iframe" frameborder="0" scrolling="no" loading="lazy">
+  </iframe>
+
   <p style="font-size: 24px; font-weight: bold; margin-bottom: 0;">日付検索</p>
   <input type="date" id="date">
   
   <div class="section-title">▼検索ボタン</div>
   
-  <!-- 【新規追加】自由入力検索窓ボックス -->
   <div class="box" style="border: 2px solid #6a0dad;">
     <h2>キーワード自由検索</h2>
     <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
@@ -327,13 +334,6 @@
     <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
   </div>
 
-  <div class="calendar-box">
-    <h2 style="margin:5px 0;">▼魔灰えん スケジュール</h2>
-  </div>
-  <iframe
-    src="https://calendar.google.com/calendar/embed?src=afeb120713660b235cfb63c258081979b1a04fb6fc873aea78c6741550065aa6%40group.calendar.google.com&ctz=Asia%2FTokyo"
-    class="calendar-iframe" frameborder="0" scrolling="no" loading="lazy">
-  </iframe>
 </div>
 
 <div class="footer">
@@ -355,7 +355,7 @@
 
 <script>
 // --- 管理設定 ---
-let maintenanceMode = false; // JavaScriptのエラー防止のため「flash」から修正しました。メンテ時はtrueにしてください。
+let maintenanceMode = false; 
 
 const isDev = new URLSearchParams(location.search).get("dev") === "1";
 if (maintenanceMode && !isDev) {
@@ -363,11 +363,10 @@ if (maintenanceMode && !isDev) {
   document.body.style.overflow = "hidden";
 }
 
-/* --- 【新規追加】自由検索用の関数 --- */
+/* --- 自由検索用の関数 --- */
 function searchFreeX() {
   const word = document.getElementById("free-keyword").value.trim();
   if(!word) { alert("検索ワードを入力してね！"); return; }
-  // 既存の「OR検索（ワード単体、またはハッシュタグ）」と同じ形式で検索します
   const query = `${word} OR #${word}`;
   window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
 }
@@ -377,7 +376,6 @@ function searchFreeYahoo() {
   if(!word) { alert("検索ワードを入力してね！"); return; }
   window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
 }
-
 
 // --- 既存の検索関数 ---
 function searchX(word, group){
