@@ -3,287 +3,514 @@
 <head>
   <meta charset="UTF-8">
   <title>魔界検索ツール</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="icon" href="images/icon_3.png">
+  <link rel="apple-touch-icon" href="images/icon_3.png">
   <meta name="theme-color" content="#6a0dad">
-
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg1: #241133;
-      --bg2: #3a1f52;
-      --bg3: #170b24;
-      --text: #fff7ff;
-      --sub: #e8d6ff;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 162, 244, 0.18), transparent 22%),
-        radial-gradient(circle at 80% 25%, rgba(123, 201, 255, 0.18), transparent 24%),
-        radial-gradient(circle at 50% 80%, rgba(212, 126, 255, 0.12), transparent 30%),
-        linear-gradient(160deg, var(--bg1), var(--bg2) 48%, var(--bg3));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow-x: hidden;
-    }
-
-    /* キラキラ背景 */
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      font-family: sans-serif;
+      background-image: url("images/haikei2.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      position: relative;
       z-index: 0;
     }
 
+    /* 背景の透過レイヤー */
     body::before {
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.6) 0 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,192,255,0.55) 0 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(173,225,255,0.5) 0 1px, transparent 1.5px);
-      background-size: 180px 180px, 240px 240px, 300px 300px;
-      background-position: 10% 20%, 70% 30%, 40% 80%;
-      opacity: 0.6;
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px);
+      z-index: -1;
     }
 
-    body::after {
-      backdrop-filter: blur(2px);
-      background: rgba(0, 0, 0, 0.12);
+    /* ヘッダーロゴ */
+    .header {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      padding: 10px;
     }
 
-    .app {
+    .header-logo {
+      max-width: 400px;
+      width: 90%;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(106, 13, 173, 0.7));
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .desc {
+      background: rgba(0,0,0,0.45);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    /* ボタン共通スタイル */
+    .btn-common {
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-common:hover { transform: scale(1.05); }
+
+    /* ボタン横並び用のボックス */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+    }
+    /* 横並びの時はボタンを少し小さく（文字サイズ調整＆幅を均等に） */
+    .btn-group .btn-common {
+      flex: 1;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+
+    .reload-inline-btn { background: linear-gradient(45deg, #6a0dad, #b56cff); }
+    .share-btn { background: linear-gradient(45deg, #ff7ac3, #6a0dad); } /* 共有ボタン用のグラデーション */
+    .guide-btn { background: linear-gradient(45deg,#b56cff,#ff7ac3); width: 100%; max-width: 400px; }
+
+    /* 検索ボックス */
+    .box {
+      background: rgba(80,80,80,0.75);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      border: 2px solid #6a0dad; /* すべてのボックスに紫色の縁を追加 */
+    }
+
+    .box h2 { margin-top: 0; font-size: 20px; }
+
+    /* ボックス内ボタンの2×2グリッド配置設定 */
+    .box-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2列に均等分割 */
+      gap: 10px;                     /* ボタン同士の間隔 */
+      margin-top: 5px;
+    }
+
+    .box button {
+      margin: 0; /* グリッド化に伴いmarginをリセット */
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%; /* 横幅いっぱいに広げる */
+    }
+    .box button:hover { transform: scale(1.02); }
+
+    .pink { background: #ff7ac3; color: black; }
+    .yellow { background: #ffd700; color: black; }
+    .blue { background: #6ecbff; color: black; }
+
+    .mode {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+    .mode label { cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+    /* ボックス内埋め込み用 日付検索のスタイル変更 */
+    .box-date-container {
+      margin-bottom: 12px;
+    }
+    
+    /* 日付選択の文字を出すための新しいスタイル設定 */
+    input[type="date"] {
       position: relative;
-      z-index: 1;
-      width: min(100%, 980px);
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: none;
+      width: 180px;
+      font-size: 14px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    /* 未選択（値が空白）の時だけ「日付選択」という文字を重ねて表示する魔法のCSS */
+    input[type="date"]:invalid::before {
+      content: "日付選択";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #666;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* 自由検索入力欄のスタイル */
+    .search-input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 15px;
       text-align: center;
     }
 
-    .title {
-      margin: 0 0 12px;
-      font-size: clamp(24px, 4vw, 40px);
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-shadow:
-        0 0 12px rgba(255, 144, 229, 0.45),
-        0 4px 16px rgba(0, 0, 0, 0.35);
-    }
-
-    .lead {
-      margin: 0 auto 28px;
-      max-width: 680px;
-      color: var(--sub);
-      font-size: clamp(13px, 2vw, 16px);
-      line-height: 1.8;
-    }
-
-    /*
-      元画像(1024x576想定)の中央検索窓だけを見せるためのクロップエリア
-    */
-    .magic-search {
-      position: relative;
-      width: min(92vw, 860px);
-      margin: 0 auto;
-      aspect-ratio: 1024 / 285;
-      overflow: hidden;
-      border-radius: 28px;
-      filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.28));
-    }
-
-    .magic-search img {
-      display: block;
+    /* スケジュールエリア */
+    .calendar-box {
+      background: rgba(55,55,55,0.88);
       width: 100%;
-      height: auto;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-      transform: translateY(-145px);
+      max-width: 600px;
+      padding: 10px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(140,0,255,0.2);
     }
 
-    /*
-      実際に使うフォームUI
-      背景は透明にして、元画像の検索窓デザインを見せる
-    */
-    .search-form {
-      position: absolute;
+    .calendar-iframe {
+      border: 0;
+      width: 100%;
+      max-width: 600px;
+      height: 250px;
+      border-radius: 15px;
+      background: white;
+    }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      margin-top: 30px;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 15px;
+    }
+
+    .icons img {
+      width: 35px;
+      filter: invert(1);
+      transition: 0.2s;
+    }
+    .icons img:hover { transform: scale(1.2); }
+
+    .footer a {
+      color: #6ecbff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .footer a:hover { text-decoration: underline; }
+
+    /* メンテナンス画面 */
+    #maintenance {
+      position: fixed;
       inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url("images/gazou6.jpg");
+      background-size: cover;
+      background-position: center;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
 
-    .search-input {
-      position: absolute;
-      left: 23.8%;
-      top: 35.5%;
-      width: 41.2%;
-      height: 20.5%;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: #6a4b7a;
-      font-size: clamp(15px, 2.2vw, 26px);
-      font-weight: 700;
-      line-height: 1;
-      padding: 0 12px;
-      text-align: left;
+    .maintenance-box {
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
 
-    .search-input::placeholder {
-      color: transparent;
+    .maintenance-logo {
+      width: 250px;
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px rgba(255, 122, 195, 0.7));
+      animation: float 2s ease-in-out infinite;
     }
 
-    .search-button {
-      position: absolute;
-      left: 67.3%;
-      top: 33.5%;
-      width: 14.8%;
-      height: 24%;
-      border: none;
-      outline: none;
-      background: transparent;
-      cursor: pointer;
-      color: transparent;
-      border-radius: 999px;
-    }
-
-    .search-button:focus-visible,
-    .search-input:focus-visible {
-      box-shadow: 0 0 0 3px rgba(138, 220, 255, 0.85);
-      border-radius: 16px;
-    }
-
-    .tips {
-      margin-top: 22px;
-      color: #f4dcff;
-      font-size: clamp(12px, 1.8vw, 14px);
-      opacity: 0.92;
-      line-height: 1.8;
-    }
-
-    .tips code {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-family: inherit;
-    }
-
-    @media (max-width: 700px) {
-      .magic-search {
-        width: 96vw;
-        aspect-ratio: 1024 / 300;
-        border-radius: 20px;
-      }
-
-      .magic-search img {
-        transform: translateY(-128px);
-      }
-
-      .search-input {
-        left: 23.5%;
-        top: 35.2%;
-        width: 41.8%;
-        height: 20.5%;
-        padding: 0 8px;
-      }
-
-      .search-button {
-        left: 67.2%;
-        top: 33.2%;
-        width: 15.2%;
-        height: 24.8%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .magic-search {
-        aspect-ratio: 1024 / 320;
-      }
-
-      .magic-search img {
-        transform: translateY(-118px);
-      }
-
-      .search-input {
-        font-size: 14px;
-        left: 23%;
-        width: 42.5%;
-      }
-
-      .search-button {
-        left: 67%;
-        width: 15.5%;
-      }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
+
 <body>
 
-  <main class="app">
-    <h1 class="title">魔界検索ツール</h1>
-    <p class="lead">
-      画像の中にある検索窓だけを使う形にした完成版です。<br>
-      入力して <strong>検索</strong> ボタン、または <strong>Enter</strong> で X のライブ検索を開きます。
-    </p>
+<div id="maintenance">
+  <div class="maintenance-box">
+    <img src="images/ment.png" class="maintenance-logo" alt="Logo">
+    <h1 style="color: #ff7ac3;">現在メンテナンス中</h1>
+    <p>アップデート作業中です。<br>復旧までしばらくお待ちください。</p>
+    <button class="btn-common reload-inline-btn" onclick="location.reload()" style="margin-top: 20px;">
+      ↻ 復旧を確認する
+    </button>
+  </div>
+</div>
 
-    <section class="magic-search" aria-label="魔界検索窓">
-      <img
-        src="https://www.genspark.ai/api/files/s/Kqwvn2j7"
-        alt="魔界検索ツールの検索窓デザイン"
-      >
+<div class="header">
+  <img src="images/gazou9.png" class="header-logo" alt="魔界検索ツール">
+</div>
 
-      <form class="search-form" onsubmit="searchMagic(event)">
-        <input
-          type="text"
-          id="magicKeyword"
-          class="search-input"
-          aria-label="検索ワード"
-          autocomplete="off"
-          spellcheck="false"
-        >
-        <button
-          type="submit"
-          class="search-button"
-          aria-label="検索する"
-          title="検索する"
-        >
-          検索
-        </button>
-      </form>
-    </section>
+<div class="container">
+  <div class="desc">
+    魔界検索ツールは <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span> さんを推す為のツールです！
+  </div>
 
-    <div class="tips">
-      検索内容は <code>キーワード OR #キーワード</code> の形で X 検索します。
+  <div class="section-title">▼取扱説明書</div>
+  <button class="btn-common guide-btn" onclick="location.href='setumei.html'">取扱説明書を開く</button>
+
+  <div class="btn-group">
+    <button class="btn-common reload-inline-btn" onclick="location.reload()">↻ ページを更新</button>
+    <button class="btn-common share-btn" onclick="shareOnX()">𝕏 ツールを共有</button>
+  </div>
+  
+    <!-- プロフィール導線 -->
+  <div class="desc" style="width: 100%; max-width: 400px; margin-bottom: -10px;">
+    <p style="margin: 0 0 10px 0; font-weight: bold; font-size: 16px;">推しの魔灰えんちゃんのプロフィール</p>
+    <a href="https://lit.link/makaien" target="_blank" rel="noopener noreferrer" class="btn-common guide-btn" style="width: 100%; margin: 0;">
+      プロフィール
+    </a>
+  </div>
+
+  <div class="calendar-box">
+    <h2 style="margin:5px 0;">▼魔灰えん スケジュール</h2>
+  </div>
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src=afeb120713660b235cfb63c258081979b1a04fb6fc873aea78c6741550065aa6%40group.calendar.google.com&ctz=Asia%2FTokyo"
+    class="calendar-iframe" frameborder="0" scrolling="no" loading="lazy">
+  </iframe>
+  
+  <div class="section-title">▼検索ボタン</div>
+  
+  <div class="box">
+    <h2>キーワード自由検索</h2>
+    <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
+    <div class="box-date-container">
+      <input type="date" id="date_free" required>
     </div>
-  </main>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchFreeX()">Xで検索</button>
+      <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
+      <button class="blue" onclick="searchDateFree()" style="grid-column: span 2;">日付</button>
+    </div>
+  </div>
 
-  <script>
-    function searchMagic(event) {
-      event.preventDefault();
+  <div class="box">
+    <h2>魔灰えん</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode1" value="or" checked> OR</label>
+      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+    </div>
+    <div class="box-date-container">
+      <input type="date" id="date1" required>
+    </div>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰えん', 'date1')">日付</button>
+      <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
+    </div>
+  </div>
 
-      const input = document.getElementById("magicKeyword");
-      const word = input.value.trim();
+  <div class="box">
+    <h2>魔灰絵</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode2" value="or" checked> OR</label>
+      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+    </div>
+    <div class="box-date-container">
+      <input type="date" id="date2" required>
+    </div>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰絵', 'date2')">日付</button>
+      <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+    </div>
+  </div>
 
-      if (!word) {
-        alert("検索ワードを入力してね！");
-        input.focus();
-        return;
-      }
+  <div class="box">
+    <h2>魔灰えん新衣装お披露目会</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode3" value="or" checked> OR</label>
+      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+    </div>
+    <div class="box-date-container">
+      <input type="date" id="date3" required>
+    </div>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会', 'date3')">日付</button>
+      <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+    </div>
+  </div>
 
-      const query = `${word} OR #${word}`;
-      const url = `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
+  <div class="box">
+    <h2>魔灰の素材</h2>
+    <div class="mode">
+      <label><input type="radio" name="mode4" value="or" checked> OR</label>
+      <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
+    </div>
+    <div class="box-date-container">
+      <input type="date" id="date4" required>
+    </div>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰の素材', 'date4')">日付</button>
+      <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
+    </div>
+  </div>
 
-      window.open(url, "_blank", "noopener");
-    }
-  </script>
+</div>
+
+<div class="footer">
+  <div class="icons">
+    <a href="https://x.com/makaien_vtuber" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
+    </a>
+    <a href="https://www.youtube.com/@makaien_vtuber" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
+    </a>
+    <a href="https://www.twitch.tv/makaien_vtuber" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg" alt="Twitch">
+    </a>
+  </div>
+
+  <p>作成者：<a href="https://x.com/Vapor_Ghost_V7" target="_blank" rel="noopener noreferrer">Akito_Tokikawa</a></p>
+  <div style="font-size: 12px; opacity: 0.6;">ver 1.3.0</div>
+</div>
+
+<script>
+// --- 管理設定 ---
+let maintenanceMode = false; 
+
+const isDev = new URLSearchParams(location.search).get("dev") === "1";
+if (maintenanceMode && !isDev) {
+  document.getElementById("maintenance").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+/* --- X共有用関数 --- */
+function shareOnX() {
+  // ハッシュタグに #VTuber を追加しました
+  const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん #VTuber";
+  const url = location.href; 
+  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
+}
+
+/* --- 自由検索用の関数 --- */
+function searchFreeX() {
+  const word = document.getElementById("free-keyword").value.trim();
+  if(!word) { alert("検索ワードを入力してね！"); return; }
+  const query = `${word} OR #${word}`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+}
+
+function searchFreeYahoo() {
+  const word = document.getElementById("free-keyword").value.trim();
+  if(!word) { alert("検索ワードを入力してね！"); return; }
+  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
+}
+
+function searchDateFree() {
+  const word = document.getElementById("free-keyword").value.trim();
+  if(!word) { alert("検索ワードを入力してね！"); return; }
+  
+  const dateInput = document.getElementById("date_free").value;
+  if(!dateInput){ alert("日付を選んでね！"); return; }
+  
+  const d = new Date(dateInput);
+  const since = dateInput; 
+  d.setDate(d.getDate() + 1);
+  const until = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  const query = `${word} since:${since} until:${until}`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+}
+
+// --- 既存の検索関数 ---
+function searchX(word, group){
+  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
+  const query = (mode === "or") ? `${word} OR #${word}` : `"${word}" OR "#${word}"`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+}
+
+function searchYahoo(word){
+  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
+}
+
+function searchDate(word, inputId){
+  const dateInput = document.getElementById(inputId).value;
+  if(!dateInput){ alert("日付を選んでね！"); return; }
+  const d = new Date(dateInput);
+  const since = dateInput; 
+  d.setDate(d.getDate() + 1);
+  const until = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  const query = `${word} since:${since} until:${until}`;
+  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+}
+
+function postX(word){
+  const text = `#${word}`;
+  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+}
+</script>
 
 </body>
 </html>
