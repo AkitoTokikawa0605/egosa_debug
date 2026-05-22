@@ -131,6 +131,58 @@
       margin-top: 5px;
     }
 
+    .fantasy-search {
+  position: relative;
+  width: 700px;
+  max-width: 95%;
+  height: 140px;
+
+  background: url("images/search_frame.png") no-repeat center;
+  background-size: contain;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  margin: auto;
+}
+
+.fantasy-search input {
+  width: 55%;
+  padding: 14px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 15px;
+
+  background: rgba(255,255,255,0.85);
+
+  font-size: 22px;
+  text-align: center;
+
+  color: #7a3b8f;
+  font-weight: bold;
+}
+
+.fantasy-search button {
+  border: none;
+  padding: 14px 24px;
+
+  border-radius: 15px;
+
+  background: linear-gradient(45deg,#c58cff,#ffb3e6);
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  color: white;
+
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
     .box button {
       margin: 0; /* グリッド化に伴いmarginをリセット */
       padding: 10px 15px;
@@ -321,12 +373,15 @@
   
   <div class="section-title">▼検索ボタン</div>
   
-  <div class="box">
-    <h2>キーワード自由検索</h2>
-    <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
-    <div class="box-date-container">
-      <input type="date" id="date_free" required>
-    </div>
+  <<div class="fantasy-search">
+
+  <input type="text"
+         id="free-keyword"
+         placeholder="何かお探しですか？">
+
+  <button onclick="searchFreeX()">検索</button>
+
+</div>
     <div class="box-buttons">
       <button class="pink" onclick="searchFreeX()">Xで検索</button>
       <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
