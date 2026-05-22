@@ -132,20 +132,21 @@
     }
 
 /* ファンタジー検索窓 */
-.fantasy-search {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: 120px;
+.fantasy-search::before {
+  content: "";
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  position: absolute;
+  inset: 0;
 
-  margin: auto;
+  background: url("images/search_frame.png") no-repeat;
 
-  overflow: hidden;
+  background-size: 70% auto;
+
+  background-position: center 18px;
+
+  pointer-events: none;
+
+  z-index: 0;
 }
 
 /* 羽根画像 */
