@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -123,16 +123,25 @@
 
     .box h2 { margin-top: 0; font-size: 20px; }
 
+    /* ボックス内ボタンの2×2グリッド配置設定 */
+    .box-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2列に均等分割 */
+      gap: 10px;                     /* ボタン同士の間隔 */
+      margin-top: 5px;
+    }
+
     .box button {
-      margin: 5px;
+      margin: 0; /* グリッド化に伴いmarginをリセット */
       padding: 10px 15px;
       border-radius: 10px;
       border: none;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;
+      width: 100%; /* 横幅いっぱいに広げる */
     }
-    .box button:hover { transform: scale(1.05); }
+    .box button:hover { transform: scale(1.02); }
 
     .pink { background: #ff7ac3; color: black; }
     .yellow { background: #ffd700; color: black; }
@@ -304,7 +313,7 @@
 
   <div class="btn-group">
     <button class="btn-common reload-inline-btn" onclick="location.reload()">↻ ページを更新</button>
-    <button class="btn-common share-btn" onclick="shareOnX()">ツールを共有</button>
+    <button class="btn-common share-btn" onclick="shareOnX()">𝕏 ツールを共有</button>
   </div>
 
   <div class="section-title">▼取扱説明書</div>
@@ -326,10 +335,10 @@
     <div class="box-date-container">
       <input type="date" id="date_free" required>
     </div>
-    <div>
+    <div class="box-buttons">
       <button class="pink" onclick="searchFreeX()">Xで検索</button>
       <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
-      <button class="blue" onclick="searchDateFree()">日付</button>
+      <button class="blue" onclick="searchDateFree()" style="grid-column: span 2;">日付</button>
     </div>
   </div>
 
@@ -342,10 +351,12 @@
     <div class="box-date-container">
       <input type="date" id="date1" required>
     </div>
-    <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん', 'date1')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰えん', 'date1')">日付</button>
+      <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
+    </div>
   </div>
 
   <div class="box">
@@ -357,10 +368,12 @@
     <div class="box-date-container">
       <input type="date" id="date2" required>
     </div>
-    <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰絵', 'date2')">日付</button>
-    <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰絵', 'date2')">日付</button>
+      <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
+    </div>
   </div>
 
   <div class="box">
@@ -372,10 +385,12 @@
     <div class="box-date-container">
       <input type="date" id="date3" required>
     </div>
-    <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会', 'date3')">日付</button>
-    <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会', 'date3')">日付</button>
+      <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
+    </div>
   </div>
 
   <div class="box">
@@ -387,10 +402,12 @@
     <div class="box-date-container">
       <input type="date" id="date4" required>
     </div>
-    <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
-    <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
-    <button class="blue" onclick="searchDate('魔灰の素材', 'date4')">日付</button>
-    <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
+      <button class="blue" onclick="searchDate('魔灰の素材', 'date4')">日付</button>
+      <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
+    </div>
   </div>
 
 </div>
@@ -425,7 +442,6 @@ if (maintenanceMode && !isDev) {
 /* --- X共有用関数 --- */
 function shareOnX() {
   const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん";
-  // 現在のページのURLを自動取得してシェアに含める
   const url = location.href; 
   window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
 }
