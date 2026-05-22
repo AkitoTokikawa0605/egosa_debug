@@ -218,94 +218,81 @@
     padding: 10px 14px;
   }
 }
-.fantasy-search input {
-  width: 55%;
-  padding: 14px;
 
+/* 通常ボタン */
+.box button {
+  margin: 0;
+  padding: 10px 15px;
+  border-radius: 10px;
   border: none;
-  outline: none;
-
-  border-radius: 15px;
-
-  background: rgba(255,255,255,0.85);
-
-  font-size: 22px;
-  text-align: center;
-
-  color: #7a3b8f;
   font-weight: bold;
-}
-
-.fantasy-search button {
-  border: none;
-  padding: 14px 24px;
-
-  border-radius: 15px;
-
-  background: linear-gradient(45deg,#c58cff,#ffb3e6);
-
-  font-size: 22px;
-  font-weight: bold;
-
   cursor: pointer;
-
-  color: white;
-
-  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  transition: 0.2s;
+  width: 100%;
 }
-    .box button {
-      margin: 0; /* グリッド化に伴いmarginをリセット */
-      padding: 10px 15px;
-      border-radius: 10px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      width: 100%; /* 横幅いっぱいに広げる */
-    }
-    .box button:hover { transform: scale(1.02); }
 
-    .pink { background: #ff7ac3; color: black; }
-    .yellow { background: #ffd700; color: black; }
-    .blue { background: #6ecbff; color: black; }
+.box button:hover {
+  transform: scale(1.02);
+}
 
-    .mode {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 12px;
-    }
-    .mode label { cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.pink {
+  background: #ff7ac3;
+  color: black;
+}
 
-    /* ボックス内埋め込み用 日付検索のスタイル変更 */
-    .box-date-container {
-      margin-bottom: 12px;
-    }
-    
-    /* 日付選択の文字を出すための新しいスタイル設定 */
-    input[type="date"] {
-      position: relative;
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: none;
-      width: 180px;
-      font-size: 14px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-    
+.yellow {
+  background: #ffd700;
+  color: black;
+}
 
-    /* 自由検索入力欄のスタイル */
-    .search-input {
-      width: 90%;
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      font-size: 16px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
+.blue {
+  background: #6ecbff;
+  color: black;
+}
+
+/* 検索モード */
+.mode {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.mode label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 日付エリア */
+.box-date-container {
+  margin-bottom: 12px;
+}
+
+/* 日付入力 */
+input[type="date"] {
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  width: 180px;
+  font-size: 14px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+/* 自由検索入力欄 */
+.search-input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
+}
 
     /* スケジュールエリア */
     .calendar-box {
