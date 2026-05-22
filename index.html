@@ -1,4 +1,4 @@
-<!DOCTYPE<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -86,11 +86,27 @@
       transition: 0.2s;
       text-decoration: none;
       display: inline-block;
+      text-align: center;
     }
     .btn-common:hover { transform: scale(1.05); }
 
+    /* ボタン横並び用のボックス */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+    }
+    /* 横並びの時はボタンを少し小さく（文字サイズ調整＆幅を均等に） */
+    .btn-group .btn-common {
+      flex: 1;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+
     .reload-inline-btn { background: linear-gradient(45deg, #6a0dad, #b56cff); }
-    .guide-btn { background: linear-gradient(45deg,#b56cff,#ff7ac3); }
+    .share-btn { background: linear-gradient(45deg, #ff7ac3, #6a0dad); } /* 共有ボタン用のグラデーション */
+    .guide-btn { background: linear-gradient(45deg,#b56cff,#ff7ac3); width: 100%; max-width: 400px; }
 
     /* 検索ボックス */
     .box {
@@ -286,7 +302,10 @@
     魔界検索ツールは <span style="color:#ff7ac3; font-weight:bold;">魔灰えん</span> さんを推す為のツールです！
   </div>
 
-  <button class="btn-common reload-inline-btn" onclick="location.reload()">↻ ページを更新</button>
+  <div class="btn-group">
+    <button class="btn-common reload-inline-btn" onclick="location.reload()">↻ ページを更新</button>
+    <button class="btn-common share-btn" onclick="shareOnX()">𝕏 ツールを共有</button>
+  </div>
 
   <div class="section-title">▼取扱説明書</div>
   <button class="btn-common guide-btn" onclick="location.href='setumei.html'">取扱説明書を開く</button>
@@ -401,6 +420,14 @@ const isDev = new URLSearchParams(location.search).get("dev") === "1";
 if (maintenanceMode && !isDev) {
   document.getElementById("maintenance").style.display = "flex";
   document.body.style.overflow = "hidden";
+}
+
+/* --- X共有用関数 --- */
+function shareOnX() {
+  const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん";
+  // 現在のページのURLを自動取得してシェアに含める
+  const url = location.href; 
+  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
 }
 
 /* --- 自由検索用の関数 --- */
