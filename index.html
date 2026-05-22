@@ -1,4 +1,4 @@
-<!DOCTYPE<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -441,7 +441,8 @@ if (maintenanceMode && !isDev) {
 
 /* --- X共有用関数 --- */
 function shareOnX() {
-  const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん";
+  // ハッシュタグに #VTuber を追加しました
+  const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん #VTuber";
   const url = location.href; 
   window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
 }
