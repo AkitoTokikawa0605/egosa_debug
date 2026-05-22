@@ -371,23 +371,27 @@
     class="calendar-iframe" frameborder="0" scrolling="no" loading="lazy">
   </iframe>
   
-  <div class="section-title">▼検索ボタン</div>
-  
-  <<div class="fantasy-search">
+<div class="section-title">▼検索ボタン</div>
 
-  <input type="text"
-         id="free-keyword"
-         placeholder="何かお探しですか？">
+<div class="box">
 
-  <button onclick="searchFreeX()">検索</button>
+  <div class="fantasy-search">
+
+    <input type="text"
+           id="free-keyword"
+           placeholder="何かお探しですか？">
+
+    <button onclick="searchFreeX()">検索</button>
+
+  </div>
+
+  <div class="box-buttons">
+    <button class="pink" onclick="searchFreeX()">Xで検索</button>
+    <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
+    <button class="blue" onclick="searchDateFree()" style="grid-column: span 2;">日付</button>
+  </div>
 
 </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchFreeX()">Xで検索</button>
-      <button class="yellow" onclick="searchFreeYahoo()">Yahooリアルタイム</button>
-      <button class="blue" onclick="searchDateFree()" style="grid-column: span 2;">日付</button>
-    </div>
-  </div>
 
   <div class="box">
     <h2>魔灰えん</h2>
