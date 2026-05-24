@@ -533,8 +533,15 @@ console.log(mode); // ←確認用
     `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
     "_blank"
   );
-}
+function searchYahoo(word){
 
+  const query = encodeURIComponent(word);
+
+  window.open(
+    `https://x.com/search?q=${query}&f=live`,
+    "_blank"
+  );
+}
 function searchDate(word, inputId){
   const dateInput = document.getElementById(inputId).value;
   if(!dateInput){ alert("日付を選んでね！"); return; }
