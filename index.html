@@ -526,7 +526,9 @@ function searchX(word, group){
   else if(mode === "exact"){
     query = `"${word}" OR "#${word}"`;
   }
-
+  
+console.log(mode); // ←確認用
+  
   window.open(
     `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
     "_blank"
