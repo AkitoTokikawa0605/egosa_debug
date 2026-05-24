@@ -505,13 +505,32 @@ function searchDateFree() {
 
 // --- 既存の検索関数 ---
 function searchX(word, group){
-  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
-  const query = (mode === "or") ? `${word} OR #${word}` : `"${word}" OR "#${word}"`;
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
-}
 
-function searchYahoo(word){
-  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
+  const mode = document.querySelector(
+    `input[name="${group}"]:checked`
+  ).value;
+
+  let query = "";
+
+  // 普通検索（#のみ）
+  if(mode === "normal"){
+    query = `#${word}`;
+  }
+
+  // OR検索
+  else if(mode === "or"){
+    query = `${word} OR #${word}`;
+  }
+
+  // 完全一致
+  else if(mode === "exact"){
+    query = `"${word}" OR "#${word}"`;
+  }
+
+  window.open(
+    `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
+    "_blank"
+  );
 }
 
 function searchDate(word, inputId){
