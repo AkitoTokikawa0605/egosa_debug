@@ -512,7 +512,7 @@ function searchX(word, group){
 
   let query = "";
 
-  // 普通検索（#のみ）
+  // 通常検索
   if(mode === "normal"){
     query = `#${word}`;
   }
@@ -526,22 +526,23 @@ function searchX(word, group){
   else if(mode === "exact"){
     query = `"${word}" OR "#${word}"`;
   }
-  
-console.log(mode); // ←確認用
-  
+
   window.open(
     `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
     "_blank"
   );
+}
+
 function searchYahoo(word){
 
   const query = encodeURIComponent(word);
 
   window.open(
-    `https://x.com/search?q=${query}&f=live`,
+    `https://search.yahoo.co.jp/realtime/search?p=${query}`,
     "_blank"
   );
 }
+  
 function searchDate(word, inputId){
   const dateInput = document.getElementById(inputId).value;
   if(!dateInput){ alert("日付を選んでね！"); return; }
