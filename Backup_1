@@ -264,18 +264,20 @@
       z-index: 9999;
     }
 
-    .maintenance-box {
-      background: rgba(0,0,0,0.6);
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    }
+.maintenance-box {
+  background: rgba(0,0,0,0.6);
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  width: 90%;
+  max-width: 700px;
+}
 
     .maintenance-logo {
-      width: 250px;
-      max-width: 80%;
+      width: 450px;
+      max-width: 100%;
       height: auto;
       margin-bottom: 20px;
       filter: drop-shadow(0 0 10px rgba(255, 122, 195, 0.7));
@@ -293,9 +295,9 @@
 
 <div id="maintenance">
   <div class="maintenance-box">
-    <img src="images/ment.png" class="maintenance-logo" alt="Logo">
-    <h1 style="color: #ff7ac3;">現在メンテナンス中</h1>
-    <p>アップデート作業中です。<br>復旧までしばらくお待ちください。</p>
+    <img src="images/ment2.png" class="maintenance-logo" alt="Logo">
+    <h1 style="color: #ff7ac3;">メンテナンス中</h1>
+    <p>現在アップデート作業中です。<br>しばらくお待ちください。</p>
     <button class="btn-common reload-inline-btn" onclick="location.reload()" style="margin-top: 20px;">
       ↻ 復旧を確認する
     </button>
@@ -322,8 +324,8 @@
     <!-- プロフィール導線 -->
   <div class="desc" style="width: 100%; max-width: 400px; margin-bottom: -10px;">
     <p style="margin: 0 0 10px 0; font-weight: bold; font-size: 16px;">推しの魔灰えんちゃんのプロフィール</p>
-    <a href="https://lit.link/makaien" target="_blank" rel="noopener noreferrer" class="btn-common guide-btn" style="width: 100%; margin: 0;">
-      プロフィール
+    <a href="https://x.com/makaien_vtuber" target="_blank" rel="noopener noreferrer" class="btn-common guide-btn" style="width: 100%; margin: 0;">
+      X プロフィール
     </a>
   </div>
 
@@ -352,16 +354,17 @@
 
   <div class="box">
     <h2>魔灰えん</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode1" value="or" checked> OR</label>
-      <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
-    </div>
+<div class="mode">
+  <label><input type="radio" name="mode1" value="normal" checked> 通常検索</label>
+  <label><input type="radio" name="mode1" value="or"> OR</label>
+  <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
+</div>
     <div class="box-date-container">
       <input type="date" id="date1" required>
     </div>
     <div class="box-buttons">
       <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰えん')">Yahoo</button>
+      <button class="yellow" onclick="searchYahoo('魔灰えん','mode1')">Yahoo</button>
       <button class="blue" onclick="searchDate('魔灰えん', 'date1')">日付</button>
       <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
     </div>
@@ -369,10 +372,11 @@
 
   <div class="box">
     <h2>魔灰絵</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode2" value="or" checked> OR</label>
-      <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
-    </div>
+<div class="mode">
+  <label><input type="radio" name="mode2" value="normal" checked> 通常検索</label>
+  <label><input type="radio" name="mode2" value="or"> OR</label>
+  <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
+</div>
     <div class="box-date-container">
       <input type="date" id="date2" required>
     </div>
@@ -386,10 +390,11 @@
 
   <div class="box">
     <h2>魔灰えん新衣装お披露目会</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode3" value="or" checked> OR</label>
-      <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
-    </div>
+<div class="mode">
+  <label><input type="radio" name="mode3" value="normal" checked> 通常検索</label>
+  <label><input type="radio" name="mode3" value="or"> OR</label>
+  <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
+</div>
     <div class="box-date-container">
       <input type="date" id="date3" required>
     </div>
@@ -403,10 +408,11 @@
 
   <div class="box">
     <h2>魔灰の素材</h2>
-    <div class="mode">
-      <label><input type="radio" name="mode4" value="or" checked> OR</label>
-      <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
-    </div>
+<div class="mode">
+  <label><input type="radio" name="mode4" value="normal" checked> 通常検索</label>
+  <label><input type="radio" name="mode4" value="or"> OR</label>
+  <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
+</div>
     <div class="box-date-container">
       <input type="date" id="date4" required>
     </div>
@@ -418,13 +424,28 @@
     </div>
   </div>
 
+  <div class="box">
+    <h2>えんらいぶ</h2>
+<div class="mode">
+  <label><input type="radio" name="mode5" value="normal" checked> 通常検索</label>
+  <label><input type="radio" name="mode5" value="or"> OR</label>
+  <label><input type="radio" name="mode5" value="exact"> 完全一致</label>
+</div>
+    <div class="box-date-container">
+      <input type="date" id="date5" required>
+    </div>
+    <div class="box-buttons">
+      <button class="pink" onclick="searchX('えんらいぶ','mode5')">X検索</button>
+      <button class="yellow" onclick="searchYahoo('えんらいぶ')">Yahoo</button>
+      <button class="blue" onclick="searchDate('えんらいぶ', 'date5')">日付</button>
+      <button class="pink" onclick="postX('えんらいぶ')">ポスト</button>
+    </div>
+  </div>
+  
 </div>
 
 <div class="footer">
   <div class="icons">
-    <a href="https://x.com/makaien_vtuber" target="_blank" rel="noopener noreferrer">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
-    </a>
     <a href="https://www.youtube.com/@makaien_vtuber" target="_blank" rel="noopener noreferrer">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
     </a>
@@ -439,7 +460,7 @@
 
 <script>
 // --- 管理設定 ---
-let maintenanceMode = false; 
+let maintenanceMode =  true; 
 
 const isDev = new URLSearchParams(location.search).get("dev") === "1";
 if (maintenanceMode && !isDev) {
@@ -486,15 +507,44 @@ function searchDateFree() {
 
 // --- 既存の検索関数 ---
 function searchX(word, group){
-  const mode = document.querySelector(`input[name="${group}"]:checked`).value;
-  const query = (mode === "or") ? `${word} OR #${word}` : `"${word}" OR "#${word}"`;
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+
+  const mode = document.querySelector(
+    `input[name="${group}"]:checked`
+  ).value;
+
+  let query = "";
+
+  // 通常検索
+  if(mode === "normal"){
+    query = `#${word}`;
+  }
+
+  // OR検索
+  else if(mode === "or"){
+    query = `${word} OR #${word}`;
+  }
+
+  // 完全一致
+  else if(mode === "exact"){
+    query = `"${word}" OR "#${word}"`;
+  }
+
+  window.open(
+    `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
+    "_blank"
+  );
 }
 
 function searchYahoo(word){
-  window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
-}
 
+  const query = encodeURIComponent(word);
+
+  window.open(
+    `https://search.yahoo.co.jp/realtime/search?p=${query}`,
+    "_blank"
+  );
+}
+  
 function searchDate(word, inputId){
   const dateInput = document.getElementById(inputId).value;
   if(!dateInput){ alert("日付を選んでね！"); return; }
