@@ -121,13 +121,13 @@
       border: 2px solid #6a0dad; /* すべてのボックスに紫色の縁を追加 */
     }
 
-    .box h2 { margin-top: 0; font-size: 20px; }
+    .box h2 { margin-top: 0; font-size: 20px; margin-bottom: 15px; }
 
     /* ボックス内ボタンの2×2グリッド配置設定 */
     .box-buttons {
       display: grid;
       grid-template-columns: 1fr 1fr; /* 2列に均等分割 */
-      gap: 10px;                     /* ボタン同士の間隔 */
+      gap: 10px;                      /* ボタン同士の間隔 */
       margin-top: 5px;
     }
 
@@ -201,6 +201,20 @@
       text-align: center;
     }
 
+    /* 🌟 追加：プルダウンのスタイル */
+    .search-select {
+      width: 90%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      cursor: pointer;
+    }
+
     /* スケジュールエリア */
     .calendar-box {
       background: rgba(55,55,55,0.88);
@@ -264,16 +278,16 @@
       z-index: 9999;
     }
 
-.maintenance-box {
-  background: rgba(0,0,0,0.6);
-  padding: 50px;
-  border-radius: 20px;
-  text-align: center;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  width: 90%;
-  max-width: 700px;
-}
+    .maintenance-box {
+      background: rgba(0,0,0,0.6);
+      padding: 50px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 700px;
+    }
 
     .maintenance-logo {
       width: 450px;
@@ -321,7 +335,7 @@
     <button class="btn-common share-btn" onclick="shareOnX()">𝕏 ツールを共有</button>
   </div>
   
-    <!-- プロフィール導線 -->
+  <!-- プロフィール導線 -->
   <div class="desc" style="width: 100%; max-width: 400px; margin-bottom: -10px;">
     <p style="margin: 0 0 10px 0; font-weight: bold; font-size: 16px;">推しの魔灰えんちゃんのプロフィール</p>
     <a href="https://x.com/makaien_vtuber" target="_blank" rel="noopener noreferrer" class="btn-common guide-btn" style="width: 100%; margin: 0;">
@@ -339,6 +353,7 @@
   
   <div class="section-title">▼検索ボタン</div>
   
+  <!-- ① キーワード自由検索（そのまま） -->
   <div class="box">
     <h2>キーワード自由検索</h2>
     <input type="text" id="free-keyword" class="search-input" placeholder="検索ワードを入力してね">
@@ -352,113 +367,38 @@
     </div>
   </div>
 
+  <!-- ② プルダウンでまとめた専用検索 -->
   <div class="box">
-    <h2>魔灰えん</h2>
-<div class="mode">
-  <label><input type="radio" name="mode1" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode1" value="or"> OR</label>
-  <label><input type="radio" name="mode1" value="exact"> 完全一致</label>
-</div>
-    <div class="box-date-container">
-      <input type="date" id="date1" required>
-    </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchX('魔灰えん','mode1')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰えん','mode1')">Yahoo</button>
-      <button class="blue" onclick="searchDate('魔灰えん', 'date1')">日付</button>
-      <button class="pink" onclick="postX('魔灰えん')">ポスト</button>
-    </div>
-  </div>
+    <h2>専用キーワード検索</h2>
+    
+    <!-- ここにプルダウンを設置 -->
+    <select id="selected-keyword" class="search-select">
+      <option value="魔灰えん">魔灰えん</option>
+      <option value="魔灰絵">魔灰絵</option>
+      <option value="魔灰えん新衣装お披露目会">魔灰えん新衣装お披露目会</option>
+      <option value="魔灰の素材">魔灰の素材</option>
+      <option value="えんらいぶ">えんらいぶ</option>
+      <option value="魔灰えんタップライズ">魔灰えんタップライズ</option>
+    </select>
 
-  <div class="box">
-    <h2>魔灰絵</h2>
-<div class="mode">
-  <label><input type="radio" name="mode2" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode2" value="or"> OR</label>
-  <label><input type="radio" name="mode2" value="exact"> 完全一致</label>
-</div>
+    <div class="mode">
+      <label><input type="radio" name="mode_select" value="normal" checked> 通常検索</label>
+      <label><input type="radio" name="mode_select" value="or"> OR</label>
+      <label><input type="radio" name="mode_select" value="exact"> 完全一致</label>
+    </div>
+    
     <div class="box-date-container">
-      <input type="date" id="date2" required>
+      <input type="date" id="date_select" required>
     </div>
+    
     <div class="box-buttons">
-      <button class="pink" onclick="searchX('魔灰絵','mode2')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰絵')">Yahoo</button>
-      <button class="blue" onclick="searchDate('魔灰絵', 'date2')">日付</button>
-      <button class="pink" onclick="postX('魔灰絵')">ポスト</button>
-    </div>
-  </div>
-
-  <div class="box">
-    <h2>魔灰えん新衣装お披露目会</h2>
-<div class="mode">
-  <label><input type="radio" name="mode3" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode3" value="or"> OR</label>
-  <label><input type="radio" name="mode3" value="exact"> 完全一致</label>
-</div>
-    <div class="box-date-container">
-      <input type="date" id="date3" required>
-    </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchX('魔灰えん新衣装お披露目会','mode3')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰えん新衣装お披露目会')">Yahoo</button>
-      <button class="blue" onclick="searchDate('魔灰えん新衣装お披露目会', 'date3')">日付</button>
-      <button class="pink" onclick="postX('魔灰えん新衣装お披露目会')">ポスト</button>
-    </div>
-  </div>
-
-  <div class="box">
-    <h2>魔灰の素材</h2>
-<div class="mode">
-  <label><input type="radio" name="mode4" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode4" value="or"> OR</label>
-  <label><input type="radio" name="mode4" value="exact"> 完全一致</label>
-</div>
-    <div class="box-date-container">
-      <input type="date" id="date4" required>
-    </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchX('魔灰の素材','mode4')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰の素材')">Yahoo</button>
-      <button class="blue" onclick="searchDate('魔灰の素材', 'date4')">日付</button>
-      <button class="pink" onclick="postX('魔灰の素材')">ポスト</button>
-    </div>
-  </div>
-
-  <div class="box">
-    <h2>えんらいぶ</h2>
-<div class="mode">
-  <label><input type="radio" name="mode5" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode5" value="or"> OR</label>
-  <label><input type="radio" name="mode5" value="exact"> 完全一致</label>
-</div>
-    <div class="box-date-container">
-      <input type="date" id="date5" required>
-    </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchX('えんらいぶ','mode5')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('えんらいぶ')">Yahoo</button>
-      <button class="blue" onclick="searchDate('えんらいぶ', 'date5')">日付</button>
-      <button class="pink" onclick="postX('えんらいぶ')">ポスト</button>
+      <button class="pink" onclick="executeDropdownSearch('x')">X検索</button>
+      <button class="yellow" onclick="executeDropdownSearch('yahoo')">Yahoo</button>
+      <button class="blue" onclick="executeDropdownSearch('date')">日付</button>
+      <button class="pink" onclick="executeDropdownSearch('post')">ポスト</button>
     </div>
   </div>
   
-    <div class="box">
-    <h2>魔灰えんタップライズ</h2>
-<div class="mode">
-  <label><input type="radio" name="mode6" value="normal" checked> 通常検索</label>
-  <label><input type="radio" name="mode6" value="or"> OR</label>
-  <label><input type="radio" name="mode6" value="exact"> 完全一致</label>
-</div>
-    <div class="box-date-container">
-      <input type="date" id="date5" required>
-    </div>
-    <div class="box-buttons">
-      <button class="pink" onclick="searchX('魔灰えんタップライズ','mode6')">X検索</button>
-      <button class="yellow" onclick="searchYahoo('魔灰えんタップライズ')">Yahoo</button>
-      <button class="blue" onclick="searchDate('魔灰えんタップライズ', 'date6')">日付</button>
-      <button class="pink" onclick="postX('魔灰えんタップライズ')">ポスト</button>
-    </div>
-  </div>
 </div>
 
 <div class="footer">
@@ -477,7 +417,8 @@
 
 <script>
 // --- 管理設定 ---
-let maintenanceMode =  Flash; 
+// ※元のコードで「let maintenanceMode = Flash;」となっていてエラーになる可能性があったため、一旦「false」に修正しています。
+let maintenanceMode = false; 
 
 const isDev = new URLSearchParams(location.search).get("dev") === "1";
 if (maintenanceMode && !isDev) {
@@ -487,13 +428,12 @@ if (maintenanceMode && !isDev) {
 
 /* --- X共有用関数 --- */
 function shareOnX() {
-  // ハッシュタグに #VTuber を追加しました
   const text = "魔灰えんさんを推すための「魔界検索ツール」が便利すぎる！🔥\n#魔灰えん #VTuber";
   const url = location.href; 
   window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
 }
 
-/* --- 自由検索用の関数 --- */
+/* --- 自由検索用の関数（変更なし） --- */
 function searchFreeX() {
   const word = document.getElementById("free-keyword").value.trim();
   if(!word) { alert("検索ワードを入力してね！"); return; }
@@ -522,60 +462,45 @@ function searchDateFree() {
   window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
 }
 
-// --- 既存の検索関数 ---
-function searchX(word, group){
-
-  const mode = document.querySelector(
-    `input[name="${group}"]:checked`
-  ).value;
-
-  let query = "";
-
-  // 通常検索
-  if(mode === "normal"){
-    query = `#${word}`;
-  }
-
-  // OR検索
-  else if(mode === "or"){
-    query = `${word} OR #${word}`;
-  }
-
-  // 完全一致
-  else if(mode === "exact"){
-    query = `"${word}" OR "#${word}"`;
-  }
-
-  window.open(
-    `https://x.com/search?q=${encodeURIComponent(query)}&f=live`,
-    "_blank"
-  );
-}
-
-function searchYahoo(word){
-
-  const query = encodeURIComponent(word);
-
-  window.open(
-    `https://search.yahoo.co.jp/realtime/search?p=${query}`,
-    "_blank"
-  );
-}
+/* --- 🌟 新設：プルダウン用統合検索関数 --- */
+function executeDropdownSearch(action) {
+  // ① プルダウンで選ばれているキーワードを取得
+  const word = document.getElementById("selected-keyword").value;
   
-function searchDate(word, inputId){
-  const dateInput = document.getElementById(inputId).value;
-  if(!dateInput){ alert("日付を選んでね！"); return; }
-  const d = new Date(dateInput);
-  const since = dateInput; 
-  d.setDate(d.getDate() + 1);
-  const until = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
-  const query = `${word} since:${since} until:${until}`;
-  window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
-}
-
-function postX(word){
-  const text = `#${word}`;
-  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+  if (action === 'x') {
+    // X検索の処理
+    const mode = document.querySelector('input[name="mode_select"]:checked').value;
+    let query = "";
+    if (mode === "normal") {
+      query = `#${word}`;
+    } else if (mode === "or") {
+      query = `${word} OR #${word}`;
+    } else if (mode === "exact") {
+      query = `"${word}" OR "#${word}"`;
+    }
+    window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+    
+  } else if (action === 'yahoo') {
+    // Yahoo検索の処理
+    window.open(`https://search.yahoo.co.jp/realtime/search?p=${encodeURIComponent(word)}`, "_blank");
+    
+  } else if (action === 'date') {
+    // 日付検索の処理
+    const dateInput = document.getElementById("date_select").value;
+    if (!dateInput) { alert("日付を選んでね！"); return; }
+    
+    const d = new Date(dateInput);
+    const since = dateInput; 
+    d.setDate(d.getDate() + 1);
+    const until = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+    const query = `${word} since:${since} until:${until}`;
+    window.open(`https://x.com/search?q=${encodeURIComponent(query)}&f=live`, "_blank");
+    
+  } else if (action === 'post') {
+    // ポスト（ツイート）の処理
+    const text = `#${word}`;
+    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+  }
 }
 </script>
 
